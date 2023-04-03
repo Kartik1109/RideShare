@@ -1,19 +1,38 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, ImageBackground, Image, TouchableOpacity } from 'react-native';
+import * as Animatable from 'react-native-animatable';
 
 const backgroundImage = require('./assets/Black_colour.jpg');
 const logoImage = require('./assets/logo_taxi.png');
 
 const Ridelink = () => {
+  const fadeInRef = useRef(null);
+  const bounceRef = useRef(null);
+
+  useEffect(() => {
+    fadeInRef.current.fadeIn(5000);
+    bounceRef.current.bounceIn(5000);
+  }, []);
+
   return (
     <View style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-        <Image source={logoImage} style={styles.logo} />
-        <Text style={styles.title}>Welcome to Ridelink!</Text>
-        <Text style={styles.subtitle}>Get started by logging in or signing up.</Text>
+        <Animatable.View ref={fadeInRef} style={styles.content}>
+          <Animatable.Image source={logoImage} style={styles.logo} animation="pulse" easing="ease-out" iterationCount="infinite" />
+          <Animatable.Text style={styles.title} animation="fadeInDown" duration={1000} delay={500}>
+            Welcome to Ridelink!
+          </Animatable.Text>
+          <Animatable.Text style={styles.subtitle} animation="fadeInUp" duration={1000} delay={1000}>
+            Get started by logging in or signing up.
+          </Animatable.Text>
+        </Animatable.View>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Next</Text>
+          <Animatable.Text style={styles.buttonText} animation="pulse" easing="ease-out" iterationCount="infinite">
+            Next
+          </Animatable.Text>
         </TouchableOpacity>
+        <Animatable.View ref={bounceRef} style={styles.carContainer}>
+        </Animatable.View>
       </ImageBackground>
     </View>
   );
@@ -27,6 +46,9 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  content: {
     alignItems: 'center',
   },
   logo: {
@@ -46,7 +68,7 @@ const styles = StyleSheet.create({
     textShadowRadius: 2,
   },
   subtitle: {
-    fontSize: 20,
+    fontSize: 24,
     textAlign: 'center',
     color: '#fff',
     textShadowColor: '#000',
@@ -56,7 +78,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#fff',
     paddingHorizontal: 20,
-    paddingVertical: 15,
+    paddingVertical: 10,
     borderRadius: 20,
     marginTop: 20,
   },
@@ -65,6 +87,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000',
   },
+  carContainer: {
+    position: 'absolute',
+    bottom: -150,
+    right: -50,
+  },
+  car: {
+    width: 200,
+    height: 200,
+  },
 });
+
+
 
 export default Ridelink;
