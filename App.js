@@ -1,103 +1,97 @@
-import React, { useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, ImageBackground, Image, TouchableOpacity } from 'react-native';
-import * as Animatable from 'react-native-animatable';
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, Image} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Login from './login';
+import SignUp from './SignUp';
 
-const backgroundImage = require('./assets/Black_colour.jpg');
-const logoImage = require('./assets/logo_taxi.png');
+const Stack = createStackNavigator();
 
-const Ridelink = () => {
-  const fadeInRef = useRef(null);
-  const bounceRef = useRef(null);
-
-  useEffect(() => {
-    fadeInRef.current.fadeIn(5000);
-    bounceRef.current.bounceIn(5000);
-  }, []);
-
+function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-        <Animatable.View ref={fadeInRef} style={styles.content}>
-          <Animatable.Image source={logoImage} style={styles.logo} animation="pulse" easing="ease-out" iterationCount="infinite" />
-          <Animatable.Text style={styles.title} animation="fadeInDown" duration={1000} delay={500}>
-            Welcome to Ridelink!
-          </Animatable.Text>
-          <Animatable.Text style={styles.subtitle} animation="fadeInUp" duration={1000} delay={1000}>
-            Get started by logging in or signing up.
-          </Animatable.Text>
-        </Animatable.View>
-        <TouchableOpacity style={styles.button}>
-          <Animatable.Text style={styles.buttonText} animation="pulse" easing="ease-out" iterationCount="infinite">
-            Next
-          </Animatable.Text>
-        </TouchableOpacity>
-        <Animatable.View ref={bounceRef} style={styles.carContainer}>
-        </Animatable.View>
+      <ImageBackground 
+        source={require('./assets/white.jpg')} 
+        style={styles.background}
+        resizeMode='cover'
+      >
+        <View style={styles.innerContainer}>
+          <Image source={require('./assets/logo_taxi.png')} style={styles.logo} />
+          <Text style={styles.title}>Welcome to RideLink!</Text>
+          <TouchableOpacity
+            style={[styles.button, {height: 40}]}
+            onPress={() => navigation.navigate('Login')}
+          >
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button, {height: 40}]}
+            onPress={() => navigation.navigate('SignUp')}
+          >
+            <Text style={styles.buttonText}>Sign Up</Text>
+          </TouchableOpacity>
+        </View>
       </ImageBackground>
     </View>
   );
-};
+}
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  backgroundImage: {
-    flex: 1,
-    resizeMode: 'cover',
+    alignItems: 'center',
     justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#fff',
   },
-  content: {
+  innerContainer: {
+    flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+  background: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
   },
   logo: {
     width: 100,
     height: 100,
     marginBottom: 20,
-    borderRadius: 50,
+    borderRadius: "100%"
+   
   },
   title: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    color: '#fff',
-    textAlign: 'center',
-    marginBottom: 20,
-    textShadowColor: '#000',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2,
-  },
-  subtitle: {
     fontSize: 24,
-    textAlign: 'center',
-    color: '#fff',
-    textShadowColor: '#000',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    color: 'black'
+    
   },
   button: {
-    backgroundColor: '#fff',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 20,
-    marginTop: 20,
+    backgroundColor: '#007bff',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+    width: '30%', // add this style
+  alignItems: 'center', // add this style to center the text horizontally
+
   },
   buttonText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#000',
-  },
-  carContainer: {
-    position: 'absolute',
-    bottom: -150,
-    right: -50,
-  },
-  car: {
-    width: 200,
-    height: 200,
+    color: '#fff',
+    fontSize: 18,
   },
 });
 
-
-
-export default Ridelink;
+export default App;
