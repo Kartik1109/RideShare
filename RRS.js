@@ -62,7 +62,7 @@ const handleGenderSelection = (value) => {
     </View>
   </View>
   <View style={styles.inputContainer}>
-    <Text style={styles.label}>Gender:</Text>
+    <Text style={styles.label}>Preferred Gender For Travel:</Text>
     <View style={styles.genderContainer}>
       <TouchableOpacity
         style={[styles.genderButton, gender === 'male' && styles.selectedGenderButton]}
