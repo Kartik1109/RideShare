@@ -7,6 +7,8 @@ import SignUp from './SignUp';
 
 const Stack = createStackNavigator();
 
+
+
 function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
@@ -30,12 +32,31 @@ function HomeScreen({ navigation }) {
           >
             <Text style={styles.buttonText}>Sign Up</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button, {height: 40}]}
+            onPress={() => navigation.navigate('MainPage')}
+          >
+            <Text style={styles.buttonText}>Skip to Main Screen</Text>
+          </TouchableOpacity>
         </View>
       </ImageBackground>
     </View>
   );
 }
 
+function MainPage({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Main Page</Text>
+      <TouchableOpacity
+        style={[styles.button, {height: 40}]}
+        onPress={() => navigation.goBack()}
+      >
+        <Text style={styles.buttonText}>Go Back</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
 function App() {
   return (
     <NavigationContainer>
@@ -43,6 +64,7 @@ function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="MainPage" component={MainPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -69,7 +91,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     marginBottom: 20,
-    borderRadius: "100%"
+    borderRadius: 100
    
   },
   title: {
