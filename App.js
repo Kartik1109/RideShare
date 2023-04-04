@@ -4,10 +4,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from './login';
 import SignUp from './SignUp';
+import Main from './Main';
+import OfferRide from './ORS'; // import the OfferRide screen
+import RequestRide from './RRS'; // import to RequestRide screen
+
 
 const Stack = createStackNavigator();
-
-
 
 function HomeScreen({ navigation }) {
   return (
@@ -34,29 +36,17 @@ function HomeScreen({ navigation }) {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button, {height: 40}]}
-            onPress={() => navigation.navigate('MainPage')}
+            onPress={() => navigation.navigate('Main')}
           >
             <Text style={styles.buttonText}>Skip to Main Screen</Text>
           </TouchableOpacity>
+          
         </View>
       </ImageBackground>
     </View>
   );
 }
 
-function MainPage({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Main Page</Text>
-      <TouchableOpacity
-        style={[styles.button, {height: 40}]}
-        onPress={() => navigation.goBack()}
-      >
-        <Text style={styles.buttonText}>Go Back</Text>
-      </TouchableOpacity>
-    </View>
-  );
-}
 function App() {
   return (
     <NavigationContainer>
@@ -64,7 +54,9 @@ function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="MainPage" component={MainPage} />
+        <Stack.Screen name="Main" component={Main} />
+        <Stack.Screen name="OfferRide" component={OfferRide} />
+        <Stack.Screen name="RequestRide" component={RequestRide} /> 
       </Stack.Navigator>
     </NavigationContainer>
   );
