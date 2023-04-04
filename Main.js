@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 const Main = ({ navigation }) => {
   return (
@@ -18,6 +18,23 @@ const Main = ({ navigation }) => {
       >
         <Text style={styles.buttonText}>Request a Ride</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: 'red' }]}
+        onPress={() => navigation.navigate('WWP')}
+      >
+        <Text style={styles.buttonText}>Wordle Wednesday</Text>
+      </TouchableOpacity>
+     <TouchableOpacity onPress={() => navigation.navigate('CoinMeasurement')}>
+     <View style={styles.coinContainer}>
+  <Image
+    source={require('./assets/coin.png')}
+    style={styles.coinButton}
+    onPress={() => navigation.navigate('CoinMeasurement')}
+  />
+  <Text style={styles.coinText}>100 coins</Text>
+</View>
+</TouchableOpacity>
+      
     </View>
   );
 };
@@ -46,6 +63,22 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
   },
+  coinContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    position: 'absolute',
+    top: -480,
+    right: -180,
+  },
+  coinButton: {
+    width: 40,
+    height: 40,
+  },
+  coinText: {
+    marginLeft: 0,
+    fontSize: 16,
+    fontWeight: 'bold',
+  }
 });
 
 export default Main;

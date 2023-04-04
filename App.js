@@ -7,6 +7,9 @@ import SignUp from './SignUp';
 import Main from './Main';
 import OfferRide from './ORS'; // import the OfferRide screen
 import RequestRide from './RRS'; // import to RequestRide screen
+import WWP from './WWP'
+import CoinMeasurement from './CoinMeasurement';
+
 
 
 const Stack = createStackNavigator();
@@ -57,6 +60,9 @@ function App() {
         <Stack.Screen name="Main" component={Main} />
         <Stack.Screen name="OfferRide" component={OfferRide} />
         <Stack.Screen name="RequestRide" component={RequestRide} /> 
+        <Stack.Screen name="WWP" component={WWP} /> 
+        <Stack.Screen name="CoinMeasurement" component={CoinMeasurement} /> 
+
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -106,6 +112,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
   },
+  
 });
 
 export default App;
