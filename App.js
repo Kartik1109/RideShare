@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, Image} from 'react-native';
+import { View, Text, StyleSheet, Animated, TouchableOpacity, ImageBackground, Image} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from './login';
@@ -17,11 +17,7 @@ const Stack = createStackNavigator();
 function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <ImageBackground 
-        source={require('./assets/white.jpg')} 
-        style={styles.background}
-        resizeMode='cover'
-      >
+      
         <View style={styles.innerContainer}>
           <Image source={require('./assets/logo_taxi.png')} style={styles.logo} />
           <Text style={styles.title}>Welcome to RideLink!</Text>
@@ -45,7 +41,7 @@ function HomeScreen({ navigation }) {
           </TouchableOpacity>
           
         </View>
-      </ImageBackground>
+      
     </View>
   );
 }
@@ -53,7 +49,18 @@ function HomeScreen({ navigation }) {
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: 'black',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      >
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUp" component={SignUp} />
@@ -73,7 +80,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: 'black', // change to dark background color
   },
   innerContainer: {
     flex: 1,
@@ -90,29 +97,26 @@ const styles = StyleSheet.create({
     height: 100,
     marginBottom: 20,
     borderRadius: 100
-   
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: 'black'
-    
+    color: '#fff', // change to white text color
   },
   button: {
     backgroundColor: '#007bff',
     padding: 10,
     borderRadius: 5,
     marginTop: 10,
-    width: '30%', // add this style
-  alignItems: 'center', // add this style to center the text horizontally
-
+    width: '30%',
+    alignItems: 'center',
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
   },
-  
 });
+
 
 export default App;
