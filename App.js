@@ -9,6 +9,7 @@ import OfferRide from './ORS'; // import the OfferRide screen
 import RequestRide from './RRS'; // import to RequestRide screen
 import WWP from './WWP'
 import CoinMeasurement from './CoinMeasurement';
+import AlertPage from './Alert'
 
 
 
@@ -69,6 +70,8 @@ function App() {
         <Stack.Screen name="RequestRide" component={RequestRide} /> 
         <Stack.Screen name="WWP" component={WWP} /> 
         <Stack.Screen name="CoinMeasurement" component={CoinMeasurement} /> 
+        <Stack.Screen name="AlertPage" component={AlertPage} /> 
+
 
       </Stack.Navigator>
     </NavigationContainer>

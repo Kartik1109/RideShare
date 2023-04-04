@@ -24,6 +24,12 @@ const Main = ({ navigation }) => {
       >
         <Text style={styles.buttonText}>Wordle Wednesday</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: 'purple' }]}
+        onPress={() => navigation.navigate('AlertPage')}
+      >
+        <Text style={styles.buttonText}>AlertPage</Text>
+      </TouchableOpacity>
      <TouchableOpacity onPress={() => navigation.navigate('CoinMeasurement')}>
      <View style={styles.coinContainer}>
   <Image
