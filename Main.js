@@ -32,13 +32,13 @@ const Main = ({ navigation }) => {
         </TouchableOpacity>
 
       <TouchableOpacity // EDIT ACCOUNT BUTTON
-        style={[styles.button, { backgroundColor: 'yellow' }]}
+        style={[styles.button, { backgroundColor: 'grey' }]}
         onPress={() => navigation.navigate('EditPage')}
       >
         <Text style={styles.buttonText}>Edit Account</Text>
       </TouchableOpacity>
 
-      
+
      <TouchableOpacity onPress={() => navigation.navigate('CoinMeasurement')}>
      <View style={styles.coinContainer}>
   <Image
