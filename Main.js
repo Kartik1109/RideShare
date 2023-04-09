@@ -29,7 +29,16 @@ const Main = ({ navigation }) => {
         onPress={() => navigation.navigate('AlertPage')}
       >
         <Text style={styles.buttonText}>AlertPage</Text>
+        </TouchableOpacity>
+
+      <TouchableOpacity // EDIT ACCOUNT BUTTON
+        style={[styles.button, { backgroundColor: 'yellow' }]}
+        onPress={() => navigation.navigate('EditPage')}
+      >
+        <Text style={styles.buttonText}>Edit Account</Text>
       </TouchableOpacity>
+
+      
      <TouchableOpacity onPress={() => navigation.navigate('CoinMeasurement')}>
      <View style={styles.coinContainer}>
   <Image
@@ -38,6 +47,7 @@ const Main = ({ navigation }) => {
     onPress={() => navigation.navigate('CoinMeasurement')}
   />
   <Text style={styles.coinText}>100 coins</Text>
+  
 </View>
 </TouchableOpacity>
       
