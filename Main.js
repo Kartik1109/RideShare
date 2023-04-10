@@ -3,64 +3,67 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 const Main = ({ navigation }) => {
   return (
+
+
+
+
     <View style={styles.container}>
+      <TouchableOpacity // DELETE ACCOUNT BUTTON
+        style={[styles.button]}
+        onPress={() => navigation.navigate('Settings')}
+      >
+        <Text style={styles.linkText}>Settings</Text>
+      </TouchableOpacity>
       <Text style={styles.title}>Main Screen</Text>
       <Text>This is the main screen of the app.</Text>
+
       <TouchableOpacity
-        style={[styles.button, { backgroundColor: 'green' }]}
+        style={[styles.button, { backgroundColor: '#007bff' }]}
         onPress={() => navigation.navigate('OfferRide')}
       >
         <Text style={styles.buttonText}>Offer a Ride</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={[styles.button, { backgroundColor: 'blue' }]}
+        style={[styles.button, { backgroundColor: '#007bff' }]}
         onPress={() => navigation.navigate('RequestRide')}
       >
         <Text style={styles.buttonText}>Request a Ride</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={[styles.button, { backgroundColor: 'red' }]}
+        style={[styles.button, { backgroundColor: '#007bff' }]}
         onPress={() => navigation.navigate('WWP')}
       >
         <Text style={styles.buttonText}>Wordle Wednesday</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={[styles.button, { backgroundColor: 'purple' }]}
+        style={[styles.button, { backgroundColor: '#007bff' }]}
         onPress={() => navigation.navigate('AlertPage')}
       >
         <Text style={styles.buttonText}>AlertPage</Text>
-        </TouchableOpacity>
-
-      <TouchableOpacity // EDIT ACCOUNT BUTTON
-        style={[styles.button, { backgroundColor: 'grey' }]}
-        onPress={() => navigation.navigate('EditPage')}
-      >
-        <Text style={styles.buttonText}>Edit Account</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity // DELETE ACCOUNT BUTTON
-        style={[styles.button, { backgroundColor: 'grey' }]}
-        onPress={() => navigation.navigate('DeletionReasonPage')}
-      >
-        <Text style={styles.buttonText}>Delete Accountt</Text>
       </TouchableOpacity>
 
 
-     <TouchableOpacity onPress={() => navigation.navigate('CoinMeasurement')}>
-     <View style={styles.coinContainer}>
-  <Image
-    source={require('./assets/coin.png')}
-    style={styles.coinButton}
-    onPress={() => navigation.navigate('CoinMeasurement')}
-  />
-  <Text style={styles.coinText}>100 coins</Text>
-  
-</View>
-</TouchableOpacity>
-      
+
+
+
+      <TouchableOpacity onPress={() => navigation.navigate('CoinMeasurement')}>
+        <View style={styles.coinContainer}>
+          <Image
+            source={require('./assets/coin.png')}
+            style={styles.coinButton}
+            onPress={() => navigation.navigate('CoinMeasurement')}
+          />
+          <Text style={styles.coinText}>100 coins</Text>
+
+
+
+        </View>
+      </TouchableOpacity>
+
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
@@ -75,7 +78,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    backgroundColor: '#007bff',
     padding: 10,
     borderRadius: 5,
     marginTop: 10,
@@ -97,11 +99,20 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
   },
+  linkText: {
+    color: '#007bff',
+    marginTop: 20,
+    fontSize: 18,
+    position: 'absolute',
+    top: -250,
+    right: -65,
+  },
   coinText: {
     marginLeft: 0,
     fontSize: 16,
     fontWeight: 'bold',
-  }
+  },
+
 });
 
 export default Main;
