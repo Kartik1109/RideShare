@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import {
   View,
   Text,
@@ -14,7 +15,82 @@ const SignUp = ({ navigation }) => {
 
   const handleSignUp = () => {
     // Perform sign up logic here
-    console.log(`Name: ${name}, Email: ${email}, Password: ${password}`);
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'Access-Control-Request-Headers': '*',
+      'api-key': 'Gw1o4JgAOP1nRJ8kYDFfUSGg00xazm9eOIVEXRSZC6MJK18VSQf3jCvwYEc7EUnR',
+    }
+
+
+    const checkDuplicates_body = JSON.stringify({
+      "collection": "UserData",
+      "database": "Main",
+      "dataSource": "Main",
+      "filter": {
+        "email": email
+      }
+    });
+
+    const insertNewUser_body = JSON.stringify({
+      "collection": "UserData",
+      "database": "Main",
+      "dataSource": "Main",
+      "document": {
+        "email": email,
+        "name": name,
+        "password": password
+      }
+    })
+
+    var checkDuplicates_config = {
+      method: 'post',
+      url: 'https://us-east-2.aws.data.mongodb-api.com/app/data-ijzkz/endpoint/data/v1/action/findOne',
+      headers: headers,
+      data: checkDuplicates_body
+    };
+
+    var inserNewUser_config = {
+      method: 'post',
+      url: 'https://us-east-2.aws.data.mongodb-api.com/app/data-ijzkz/endpoint/data/v1/action/insertOne',
+      headers: headers,
+      data: insertNewUser_body
+    };
+
+    axios(checkDuplicates_config)
+      .then(function (response) {
+        if (response.data.document != null) {
+          console.log(response.data.document)
+          alert("account with that email already exists");
+          return
+        }
+        axios(inserNewUser_config).then(function (res) {
+          console.log(JSON.stringify(res));
+          navigation.navigate('Login');
+        })
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+
+
+
+    // const { MongoClient, ServerApiVersion } = require('mongodb');
+    // const uri = "mongodb+srv://taxi_app:ridelink@main.p0zibf7.mongodb.net/?retryWrites=true&w=majority";
+    // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+    // client.connect(err => {
+    //   const collection = client.db("Main").collection("UserData");
+    //   if (collection.findOne({ "email": email }) != null) {
+    //     console.log("email already taken")
+    //     client.close();
+    //     return
+    //   }
+    //   collection.insertOne({ "email": email, "name": name, "password": password });
+    //   console.log("successful signup");
+    //   client.close();
+    //   navigation.navigate('Login')
+    // });
   };
 
   return (
