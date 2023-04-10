@@ -11,6 +11,7 @@ import WWP from './WWP'
 import CoinMeasurement from './CoinMeasurement';
 import AlertPage from './Alert'
 import EditPage from './EditAccountPage';
+import DeletionReasonPage from './DeletionResasonPage';
 
 
 
@@ -73,6 +74,7 @@ function App() {
         <Stack.Screen name="CoinMeasurement" component={CoinMeasurement} /> 
         <Stack.Screen name="AlertPage" component={AlertPage} /> 
         <Stack.Screen name="EditPage" component={EditPage} /> 
+        <Stack.Screen name="DeletionReasonPage" component={DeletionReasonPage} /> 
 
       </Stack.Navigator>
     </NavigationContainer>

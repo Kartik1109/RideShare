@@ -38,6 +38,13 @@ const Main = ({ navigation }) => {
         <Text style={styles.buttonText}>Edit Account</Text>
       </TouchableOpacity>
 
+      <TouchableOpacity // DELETE ACCOUNT BUTTON
+        style={[styles.button, { backgroundColor: 'grey' }]}
+        onPress={() => navigation.navigate('DeletionReasonPage')}
+      >
+        <Text style={styles.buttonText}>Delete Accountt</Text>
+      </TouchableOpacity>
+
 
      <TouchableOpacity onPress={() => navigation.navigate('CoinMeasurement')}>
      <View style={styles.coinContainer}>
