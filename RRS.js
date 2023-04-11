@@ -11,80 +11,80 @@ const OfferRide = () => {
   };
   const [gender, setGender] = useState('');
 
-const handleGenderSelection = (value) => {
-  setGender(value);
-};
+  const handleGenderSelection = (value) => {
+    setGender(value);
+  };
 
   return (
-    
+
     <View style={styles.container}>
-  <Text style={styles.title}>Request a Ride</Text>
-  <View style={styles.inputContainer}>
-    <Text style={styles.label}>Source Location:</Text>
-    <TextInput
-      style={styles.input}
-      value={source}
-      onChangeText={setSource}
-      placeholder="Enter source location"
-    />
-  </View>
-  <View style={styles.inputContainer}>
-    <Text style={styles.label}>Destination Location:</Text>
-    <TextInput
-      style={styles.input}
-      value={destination}
-      onChangeText={setDestination}
-      placeholder="Enter destination location"
-    />
-  </View>
-  <View style={styles.inputContainer}>
-    <Text style={styles.label}>Number of people:</Text>
-    <View style={styles.radioContainer}>
-      {[1, 2, 3, 4, 5].map((num) => (
-        <TouchableOpacity
-          key={num}
-          onPress={() => handleNumPeopleChange(num)}
-          style={[
-            styles.radioButton,
-            num === numPeople ? styles.radioButtonSelected : null,
-          ]}
-        >
-          <Text
-            style={[
-              styles.radioButtonText,
-              num === numPeople ? styles.radioButtonTextSelected : null,
-            ]}
+      <Text style={styles.title}>Request a Ride</Text>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Source Location:</Text>
+        <TextInput
+          style={styles.input}
+          value={source}
+          onChangeText={setSource}
+          placeholder="Enter source location"
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Destination Location:</Text>
+        <TextInput
+          style={styles.input}
+          value={destination}
+          onChangeText={setDestination}
+          placeholder="Enter destination location"
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Number of people:</Text>
+        <View style={styles.radioContainer}>
+          {[1, 2, 3, 4, 5].map((num) => (
+            <TouchableOpacity
+              key={num}
+              onPress={() => handleNumPeopleChange(num)}
+              style={[
+                styles.radioButton,
+                num === numPeople ? styles.radioButtonSelected : null,
+              ]}
+            >
+              <Text
+                style={[
+                  styles.radioButtonText,
+                  num === numPeople ? styles.radioButtonTextSelected : null,
+                ]}
+              >
+                {num}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </View>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Preferred Gender For Travel:</Text>
+        <View style={styles.genderContainer}>
+          <TouchableOpacity
+            style={[styles.genderButton, gender === 'male' && styles.selectedGenderButton]}
+            onPress={() => handleGenderSelection('male')}
           >
-            {num}
-          </Text>
-        </TouchableOpacity>
-      ))}
+            <Text style={[styles.genderButtonText, gender === 'male' && styles.selectedGenderButtonText]}>Male</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.genderButton, gender === 'female' && styles.selectedGenderButton]}
+            onPress={() => handleGenderSelection('female')}
+          >
+            <Text style={[styles.genderButtonText, gender === 'female' && styles.selectedGenderButtonText]}>Female</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.genderButton, gender === 'any' && styles.selectedGenderButton]}
+            onPress={() => handleGenderSelection('any')}
+          >
+            <Text style={[styles.genderButtonText, gender === 'any' && styles.selectedGenderButtonText]}>Any</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
-  </View>
-  <View style={styles.inputContainer}>
-    <Text style={styles.label}>Preferred Gender For Travel:</Text>
-    <View style={styles.genderContainer}>
-      <TouchableOpacity
-        style={[styles.genderButton, gender === 'male' && styles.selectedGenderButton]}
-        onPress={() => handleGenderSelection('male')}
-      >
-        <Text style={[styles.genderButtonText, gender === 'male' && styles.selectedGenderButtonText]}>Male</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.genderButton, gender === 'female' && styles.selectedGenderButton]}
-        onPress={() => handleGenderSelection('female')}
-      >
-        <Text style={[styles.genderButtonText, gender === 'female' && styles.selectedGenderButtonText]}>Female</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.genderButton, gender === 'any' && styles.selectedGenderButton]}
-        onPress={() => handleGenderSelection('any')}
-      >
-        <Text style={[styles.genderButtonText, gender === 'any' && styles.selectedGenderButtonText]}>Any</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-</View>
 
   );
 };

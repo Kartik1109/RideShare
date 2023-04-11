@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
+import findOne from './findOne';
+import insertOne from './insertOne';
 
 const SignUp = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -16,61 +18,40 @@ const SignUp = ({ navigation }) => {
   const handleSignUp = () => {
     // Perform sign up logic here
 
-    const headers = {
-      'Content-Type': 'application/json',
-      'Access-Control-Request-Headers': '*',
-      'api-key': 'Gw1o4JgAOP1nRJ8kYDFfUSGg00xazm9eOIVEXRSZC6MJK18VSQf3jCvwYEc7EUnR',
+    collection = 'UserData'
+
+    duplicates_filter = {
+      "email": email
     }
 
-    const checkDuplicates_body = JSON.stringify({
-      "collection": "UserData",
-      "database": "Main",
-      "dataSource": "Main",
-      "filter": {
-        "email": email
-      }
-    });
+    new_user = {
+      "email": email,
+      "name": name,
+      "password": password
+    }
 
-    const insertNewUser_body = JSON.stringify({
-      "collection": "UserData",
-      "database": "Main",
-      "dataSource": "Main",
-      "document": {
-        "email": email,
-        "name": name,
-        "password": password
-      }
-    })
+    duplicates = findOne(collection, duplicates_filter)
+    signup = insertOne(collection, new_user)
 
-    var checkDuplicates_config = {
-      method: 'post',
-      url: 'https://us-east-2.aws.data.mongodb-api.com/app/data-ijzkz/endpoint/data/v1/action/findOne',
-      headers: headers,
-      data: checkDuplicates_body
-    };
-
-    var inserNewUser_config = {
-      method: 'post',
-      url: 'https://us-east-2.aws.data.mongodb-api.com/app/data-ijzkz/endpoint/data/v1/action/insertOne',
-      headers: headers,
-      data: insertNewUser_body
-    };
-
-    axios(checkDuplicates_config)
+    axios(duplicates)
       .then(function (response) {
         if (response.data.document != null) {
-          console.log(response.data.document)
           alert("account with that email already exists");
           return
         }
-        axios(inserNewUser_config).then(function (res) {
-          console.log(JSON.stringify(res));
-          navigation.navigate('Login');
-        })
+        axios(signup).then(function (response) {
+          alert("Signup successful, proceed to login");
+          navigation.navigate('Login')
+        }
+        ).catch(function (error) {
+          console.log(error);
+        });
       })
       .catch(function (error) {
         console.log(error);
       });
+
+
   };
 
   return (
