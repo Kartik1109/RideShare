@@ -66,7 +66,7 @@ const SignUp = ({ navigation }) => {
         }
         axios(inserNewUser_config).then(function (res) {
           console.log(JSON.stringify(res));
-          navigation.navigate('Login');
+          navigation.navigate('Main');
         })
       })
       .catch(function (error) {

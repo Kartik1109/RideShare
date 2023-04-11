@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
-const OfferRide = () => {
+const OfferRide = ({ navigation }) => {
   const [source, setSource] = useState('');
   const [destination, setDestination] = useState('');
   const [numPeople, setNumPeople] = useState(1);
+  const [taxiID, settaxiID] = useState('');
+
 
   const handleNumPeopleChange = (value) => {
     setNumPeople(value);
@@ -36,7 +38,16 @@ const OfferRide = () => {
           style={styles.input}
           value={destination}
           onChangeText={setDestination}
-          placeholder="Enter destination location"
+          placeholder="Enter your desired destination"
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Taxi ID:</Text>
+        <TextInput
+          style={styles.input}
+          value={taxiID}
+          onChangeText={settaxiID}
+          placeholder="Enter taxID, or scan QR-code"
         />
       </View>
       <View style={styles.inputContainer}>
@@ -86,7 +97,7 @@ const OfferRide = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate('qr-code')}>
+      <TouchableOpacity onPress={() => navigation.navigate('QRCode')}>
         <Text style={styles.linkText}>Scan taxi QR!</Text>
       </TouchableOpacity>
     </View>

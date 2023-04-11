@@ -13,6 +13,7 @@ import AlertPage from './Alert'
 import EditPage from './EditAccountPage';
 import DeletionReasonPage from './DeletionReasonPage';
 import Settings from './settings';
+import QRCode from './QRCode';
 
 
 
@@ -77,6 +78,7 @@ function App() {
         <Stack.Screen name="EditPage" component={EditPage} />
         <Stack.Screen name="DeletionReasonPage" component={DeletionReasonPage} />
         <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="QRCode" component={QRCode} />
 
 
       </Stack.Navigator>
