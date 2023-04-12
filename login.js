@@ -1,13 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import axios from 'axios';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { userID, setUserID } from './App';
+import findOne from './findOne';
+
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // Implement login functionality here
-    console.log(`Email: ${email}, Password: ${password}`);
+
+    collection = 'UserData'
+
+    credentials = {
+      "email": email,
+      "password": password
+    }
+
+    exists = findOne(collection, credentials)
+
+    axios(exists).then(function (response) {
+      if (response.data.document == null) {
+        alert("Email or Password is incorrect. Please try again");
+        return
+      }
+      setUserID(response.data.document.name)
+      navigation.navigate('Main')
+      console.log(userID)
+    }
+    ).catch(function (error) {
+      console.log(error);
+    })
+
+
   };
 
   return (

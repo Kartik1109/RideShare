@@ -1,17 +1,44 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import insertOne from './insertOne';
+import axios from 'axios'
+
 
 const OfferRide = ({ navigation }) => {
   const [source, setSource] = useState('');
   const [destination, setDestination] = useState('');
-  const [numPeople, setNumPeople] = useState(1);
   const [taxiID, settaxiID] = useState('');
+  const [numPeople, setNumPeople] = useState(1);
+  const [gender, setGender] = useState('');
 
+
+  const handleOfferRide = () => {
+    collection = 'Offers'
+
+    data = {
+      "source": source,
+      "destination": destination,
+      "taxiID": taxiID,
+      "capacity": numPeople,
+      "genderPreference": gender
+    }
+
+    offer = insertOne(collection, data)
+
+    axios(offer).then(function (response) {
+      alert("offer has been made, check alert page for requests")
+      navigation.navigate('Main')
+    }
+    ).catch(function (error) {
+      console.log(error)
+    })
+
+  }
 
   const handleNumPeopleChange = (value) => {
     setNumPeople(value);
   };
-  const [gender, setGender] = useState('');
+
 
   const handleGenderSelection = (value) => {
     setGender(value);
@@ -100,6 +127,15 @@ const OfferRide = ({ navigation }) => {
       <TouchableOpacity onPress={() => navigation.navigate('QRCode')}>
         <Text style={styles.linkText}>Scan taxi QR!</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: '#007bff' }]}
+        onPress={handleOfferRide}
+      >
+        <Text style={styles.buttonText}>Offer</Text>
+      </TouchableOpacity>
+
+
     </View>
 
   );
@@ -189,6 +225,17 @@ const styles = StyleSheet.create({
   },
   selectedGenderButtonText: {
     color: '#fff',
+  },
+  button: {
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 30,
+    width: '60%', // add this style
+    alignItems: 'center', // add this style to center the text horizontally
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
   },
 });
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Animated, TouchableOpacity, ImageBackground, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -15,7 +15,8 @@ import DeletionReasonPage from './DeletionReasonPage';
 import Settings from './settings';
 import QRCode from './QRCode';
 
-
+export var userID = '';
+export const setUserID = (uID) => { userID = uID }
 
 const Stack = createStackNavigator();
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { userID } from './App';
 
 const Main = ({ navigation }) => {
   return (
@@ -14,6 +15,7 @@ const Main = ({ navigation }) => {
       >
         <Text style={styles.linkText}>Settings</Text>
       </TouchableOpacity>
+      <Text style={styles.welcomeMessage}>Welcome {userID}</Text>
       <Text style={styles.title}>Main Screen</Text>
       <Text>This is the main screen of the app.</Text>
 
@@ -112,6 +114,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+
+  welcomeMessage: {
+    position: 'absolute',
+    left: 20,
+    top: 40,
+    fontSize: 18
+  }
 
 });
 
