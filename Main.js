@@ -52,6 +52,13 @@ const Main = ({ navigation }) => {
         <Text style={styles.buttonText}>User_Rating</Text>
       </TouchableOpacity>
 
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: '#007bff' }]}
+        onPress={() => navigation.navigate('geoLocation')}
+      >
+        <Text style={styles.buttonText}>Track your trip!</Text>
+      </TouchableOpacity>
+
 
 
 

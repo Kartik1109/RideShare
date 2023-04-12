@@ -7,11 +7,13 @@ import SignUp from './SignUp';
 import Main from './Main';
 import OfferRide from './ORS'; // import the OfferRide screen
 import RequestRide from './RRS'; // import to RequestRide screen
+import RequestResults from './RequestResults';
 import WWP from './WWP'
 import CoinMeasurement from './CoinMeasurement';
 import AlertPage from './Alert'
-import google_map from './google_map'
+//import google_map from './google_map'
 import User_Rating from './UserRating'
+
 
 
 import geoLocation from './geoLocation'
@@ -26,31 +28,31 @@ const Stack = createStackNavigator();
 function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      
-        <View style={styles.innerContainer}>
-          <Image source={require('./assets/logo_taxi.png')} style={styles.logo} />
-          <Text style={styles.title}>Welcome to RideLink!</Text>
-          <TouchableOpacity
-            style={[styles.button, {height: 40}]}
-            onPress={() => navigation.navigate('Login')}
-          >
-            <Text style={styles.buttonText}>Login</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.button, {height: 40}]}
-            onPress={() => navigation.navigate('SignUp')}
-          >
-            <Text style={styles.buttonText}>Sign Up</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.button, {height: 40}]}
-            onPress={() => navigation.navigate('Main')}
-          >
-            <Text style={styles.buttonText}>Skip to Main Screen</Text>
-          </TouchableOpacity>
-          
-        </View>
-      
+
+      <View style={styles.innerContainer}>
+        <Image source={require('./assets/logo_taxi.png')} style={styles.logo} />
+        <Text style={styles.title}>Welcome to RideLink!</Text>
+        <TouchableOpacity
+          style={[styles.button, { height: 40 }]}
+          onPress={() => navigation.navigate('Login')}
+        >
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, { height: 40 }]}
+          onPress={() => navigation.navigate('SignUp')}
+        >
+          <Text style={styles.buttonText}>Sign Up</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, { height: 40 }]}
+          onPress={() => navigation.navigate('Main')}
+        >
+          <Text style={styles.buttonText}>Skip to Main Screen</Text>
+        </TouchableOpacity>
+
+      </View>
+
     </View>
   );
 }
@@ -75,13 +77,18 @@ function App() {
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Main" component={Main} />
         <Stack.Screen name="OfferRide" component={OfferRide} />
-        <Stack.Screen name="RequestRide" component={RequestRide} /> 
-        <Stack.Screen name="WWP" component={WWP} /> 
-        <Stack.Screen name="CoinMeasurement" component={CoinMeasurement} /> 
-        <Stack.Screen name="AlertPage" component={AlertPage} /> 
-        <Stack.Screen name="google_map" component={google_map} />
-        <Stack.Screen name="User_Rating" component={User_Rating}/>
-        
+        <Stack.Screen name="RequestRide" component={RequestRide} />
+        <Stack.Screen name="RequestResults" component={RequestResults} />
+        <Stack.Screen name="WWP" component={WWP} />
+        <Stack.Screen name="CoinMeasurement" component={CoinMeasurement} />
+        <Stack.Screen name="AlertPage" component={AlertPage} />
+        <Stack.Screen name="UserRating" component={User_Rating} />
+        <Stack.Screen name="geoLocation" component={geoLocation} />
+        <Stack.Screen name="Settings" component={settings} />
+        <Stack.Screen name="DeletionReasonPage" component={DeletionReasonPage} />
+        <Stack.Screen name="EditPage" component={EditPage} />
+        <Stack.Screen name="QRCode" component={QRCode} />
+
 
 
       </Stack.Navigator>
