@@ -40,12 +40,7 @@ function HomeScreen({ navigation }) {
         >
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, { height: 40 }]}
-          onPress={() => navigation.navigate('Main')}
-        >
-          <Text style={styles.buttonText}>Skip to Main Screen</Text>
-        </TouchableOpacity>
+
 
       </View>
 

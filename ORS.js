@@ -100,6 +100,7 @@ const OfferRide = ({ navigation }) => {
           placeholder="Enter taxID, or scan QR-code"
         />
       </View>
+      <Text style={styles.linkText}>your scanned taxiID: {qrCodeData} </Text>
       <View>
       </View>
       <View style={styles.inputContainer}>

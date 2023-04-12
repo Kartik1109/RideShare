@@ -46,6 +46,7 @@ export default function App({ navigation }) {
     const [errorMsg, setErrorMsg] = useState(null);
     const [alertTriggered, setAlertTriggered] = useState(false); // added state to avoid showing alert multiple times
 
+
     useEffect(() => {
         (async () => {
             let { status } = await Location.requestForegroundPermissionsAsync();
@@ -81,7 +82,8 @@ export default function App({ navigation }) {
             location.coords.longitude <= -79.0 &&
             !alertTriggered
         ) {
-            navigation.navigate('UserRating')
+            setTimeout(() => { navigation.navigate('UserRating') }, 5000);
+
         }
     }
 
