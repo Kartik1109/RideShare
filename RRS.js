@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { setDestination } from './RequestResults';
 
 const OfferRide = () => {
   const [source, setSource] = useState('');
