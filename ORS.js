@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import { userID } from './login';
+import { userID, userName } from './login';
 import insertOne from './insertOne';
 import axios from 'axios'
 
@@ -18,6 +18,7 @@ const OfferRide = ({ navigation }) => {
 
     data = {
       "offerer": userID,
+      "offererName": userName,
       "source": source,
       "destination": destination,
       "taxiID": taxiID,

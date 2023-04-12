@@ -52,6 +52,13 @@ const Main = ({ navigation }) => {
         <Text style={styles.buttonText}>User_Rating</Text>
       </TouchableOpacity>
 
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: '#007bff' }]}
+        onPress={() => navigation.navigate('geoLocation')}
+      >
+        <Text style={styles.buttonText}>Track your trip!</Text>
+      </TouchableOpacity>
+
 
 
 
@@ -115,7 +122,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 18,
     position: 'absolute',
-    top: -250,
+    top: -220,
     right: -65,
   },
   coinText: {
