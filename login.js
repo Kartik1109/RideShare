@@ -1,8 +1,12 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import { userID, setUserID } from './App';
 import findOne from './findOne';
+
+export var userID = '';
+export const setUserID = (uID) => { userID = uID }
+export var userName = ''
+export const setUserName = (uName) => { userName = uName }
 
 
 const Login = ({ navigation }) => {
@@ -25,9 +29,11 @@ const Login = ({ navigation }) => {
         alert("Email or Password is incorrect. Please try again");
         return
       }
-      setUserID(response.data.document.name)
-      navigation.navigate('Main')
+
+      setUserID(response.data.document._id)
+      setUserName(response.data.document.name)
       console.log(userID)
+      navigation.navigate('Main')
     }
     ).catch(function (error) {
       console.log(error);

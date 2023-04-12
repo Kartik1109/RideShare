@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { userID } from './App';
+import { userName } from './login';
 
 const Main = ({ navigation }) => {
   return (
@@ -15,7 +15,7 @@ const Main = ({ navigation }) => {
       >
         <Text style={styles.linkText}>Settings</Text>
       </TouchableOpacity>
-      <Text style={styles.welcomeMessage}>Welcome {userID}</Text>
+      <Text style={styles.welcomeMessage}>Welcome {userName}</Text>
       <Text style={styles.title}>Main Screen</Text>
       <Text>This is the main screen of the app.</Text>
 

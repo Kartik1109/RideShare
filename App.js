@@ -7,6 +7,7 @@ import SignUp from './SignUp';
 import Main from './Main';
 import OfferRide from './ORS'; // import the OfferRide screen
 import RequestRide from './RRS'; // import to RequestRide screen
+import RequestResults from './RequestResults';
 import WWP from './WWP'
 import CoinMeasurement from './CoinMeasurement';
 import AlertPage from './Alert'
@@ -14,9 +15,6 @@ import EditPage from './EditAccountPage';
 import DeletionReasonPage from './DeletionReasonPage';
 import Settings from './settings';
 import QRCode from './QRCode';
-
-export var userID = '';
-export const setUserID = (uID) => { userID = uID }
 
 const Stack = createStackNavigator();
 
@@ -73,6 +71,7 @@ function App() {
         <Stack.Screen name="Main" component={Main} />
         <Stack.Screen name="OfferRide" component={OfferRide} />
         <Stack.Screen name="RequestRide" component={RequestRide} />
+        <Stack.Screen name="RequestResults" component={RequestResults} />
         <Stack.Screen name="WWP" component={WWP} />
         <Stack.Screen name="CoinMeasurement" component={CoinMeasurement} />
         <Stack.Screen name="AlertPage" component={AlertPage} />

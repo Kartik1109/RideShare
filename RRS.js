@@ -6,6 +6,24 @@ const OfferRide = () => {
   const [destination, setDestination] = useState('');
   const [numPeople, setNumPeople] = useState(1);
 
+  const handleRequestRide = () => {
+    collection = 'Offers'
+
+    filter = {
+      "destination": destination
+    }
+
+    request = find(collection, data)
+
+    axios(request).then(function (response) {
+      response.data.document
+    }
+    ).catch(function (error) {
+      console.log(error)
+    })
+
+  }
+
   const handleNumPeopleChange = (value) => {
     setNumPeople(value);
   };
@@ -84,6 +102,12 @@ const OfferRide = () => {
           </TouchableOpacity>
         </View>
       </View>
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: '#007bff' }]}
+        onPress={handleRequestRide}
+      >
+        <Text style={styles.buttonText}>Search</Text>
+      </TouchableOpacity>
     </View>
 
   );
@@ -173,6 +197,17 @@ const styles = StyleSheet.create({
   },
   selectedGenderButtonText: {
     color: '#fff',
+  },
+  button: {
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 30,
+    width: '60%', // add this style
+    alignItems: 'center', // add this style to center the text horizontally
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
   },
 });
 

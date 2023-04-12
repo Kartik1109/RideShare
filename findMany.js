@@ -14,7 +14,7 @@ export default findOne = (collection, filter) => {
 
     return {
         method: 'post',
-        url: 'https://us-east-2.aws.data.mongodb-api.com/app/data-ijzkz/endpoint/data/v1/action/findOne',
+        url: 'https://us-east-2.aws.data.mongodb-api.com/app/data-ijzkz/endpoint/data/v1/action/find',
         headers: headers,
         data: body
     };
