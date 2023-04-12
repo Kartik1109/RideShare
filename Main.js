@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 18,
     position: 'absolute',
-    top: -250,
+    top: -220,
     right: -65,
   },
   coinText: {
