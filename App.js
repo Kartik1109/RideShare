@@ -7,11 +7,10 @@ import SignUp from './SignUp';
 import Main from './Main';
 import OfferRide from './ORS'; // import the OfferRide screen
 import RequestRide from './RRS'; // import to RequestRide screen
-import RequestResults from './RequestResults';
 import WWP from './WWP'
 import CoinMeasurement from './CoinMeasurement';
 import AlertPage from './Alert'
-//import google_map from './google_map'
+import google_map from './google_map'
 import User_Rating from './UserRating'
 import QRCode from './QRCode';
 import geoLocation from './geoLocation'
@@ -46,12 +45,6 @@ function HomeScreen({ navigation }) {
           onPress={() => navigation.navigate('Main')}
         >
           <Text style={styles.buttonText}>Skip to Main Screen</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, { height: 40 }]}
-          onPress={() => navigation.navigate('geoLocation')}
-        >
-          <Text style={styles.buttonText}>Skip to </Text>
         </TouchableOpacity>
 
       </View>

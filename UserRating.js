@@ -1,32 +1,72 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-const UserRating = ({ rating }) => {
-  const filledStars = Math.floor(rating);
-  const halfStars = Math.round(rating - filledStars);
-  const emptyStars = 5 - filledStars - halfStars;
+const RatingPage = ({ onFinish }) => {
+  const [rating, setRating] = useState(0);
+
+  const handleRating = (value) => {
+    setRating(value);
+  };
+
+  const handleFinish = () => {
+    onFinish(rating);
+  };
 
   return (
     <View style={styles.container}>
-      {[...Array(filledStars)].map((_, index) => (
-        <Ionicons key={index} name="md-star" size={20} color="#F8E71C" />
-      ))}
-      {[...Array(halfStars)].map((_, index) => (
-        <Ionicons key={index} name="md-star-half" size={20} color="#F8E71C" />
-      ))}
-      {[...Array(emptyStars)].map((_, index) => (
-        <Ionicons key={index} name="md-star-outline" size={20} color="#F8E71C" />
-      ))}
+      <Text style={styles.title}>Rate Your Ride</Text>
+      <View style={styles.ratingContainer}>
+        <TouchableOpacity onPress={() => handleRating(1)}>
+          <Icon name={rating >= 1 ? 'star' : 'star-outline'} size={40} color="#FFC107" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleRating(2)}>
+          <Icon name={rating >= 2 ? 'star' : 'star-outline'} size={40} color="#FFC107" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleRating(3)}>
+          <Icon name={rating >= 3 ? 'star' : 'star-outline'} size={40} color="#FFC107" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleRating(4)}>
+          <Icon name={rating >= 4 ? 'star' : 'star-outline'} size={40} color="#FFC107" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleRating(5)}>
+          <Icon name={rating >= 5 ? 'star' : 'star-outline'} size={40} color="#FFC107" />
+        </TouchableOpacity>
+      </View>
+      <TouchableOpacity style={styles.button} onPress={handleFinish}>
+        <Text style={styles.buttonText}>Submit</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  ratingContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 30,
+  },
+  button: {
+    backgroundColor: '#FFC107',
+    padding: 10,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 
-export default UserRating;
+export default RatingPage;

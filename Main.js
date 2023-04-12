@@ -46,7 +46,7 @@ const Main = ({ navigation }) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.button, { backgroundColor: '#007bff' }]}
-        onPress={() => navigation.navigate('User_Rating')}
+        onPress={() => navigation.navigate('UserRating')}
 
       >
         <Text style={styles.buttonText}>User_Rating</Text>
