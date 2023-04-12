@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const RatingPage = ({ onFinish }) => {
+const RatingPage = ({ onFinish, navigation }) => {
   const [rating, setRating] = useState(0);
-  Alert.alert('You have reached your destination!');
+
 
 
   const handleRating = (value) => {
@@ -17,7 +17,7 @@ const RatingPage = ({ onFinish }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.fare}>Your Fare is: $3.75</Text>
+      <Text style={styles.fare}>Your Fare is: $12.38</Text>
       <Text style={styles.title}>Rate Your Ride</Text>
       <View style={styles.ratingContainer}>
         <TouchableOpacity onPress={() => handleRating(1)}>
@@ -36,7 +36,10 @@ const RatingPage = ({ onFinish }) => {
           <Icon name={rating >= 5 ? 'star' : 'star-outline'} size={40} color="#FFC107" />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.button} onPress={handleFinish}>
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: '#007bff' }]}
+        onPress={() => navigation.navigate('Main')}
+      >
         <Text style={styles.buttonText}>Submit</Text>
       </TouchableOpacity>
     </View>
