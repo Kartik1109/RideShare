@@ -41,7 +41,7 @@ const AlertPage = ({ navigation }) => {
 
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text> Request Status: {requestStatus ? "Accepted" : "Not Accepted"} </Text>
+        <Text> Request Status: {"Accepted"} </Text>
       </View>
     );
 
@@ -60,7 +60,7 @@ const AlertPage = ({ navigation }) => {
               </View>
               <View style={styles.detail}>
                 <Text style={styles.label}>Optimality:</Text>
-                <Text style={styles.value}>{toString(Math.round(6 + Math.random() * 4)) + " / 10"}</Text>
+                <Text style={styles.value}>{"7 / 10"}</Text>
               </View>
             </View>
           </TouchableOpacity>
