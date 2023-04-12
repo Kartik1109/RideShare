@@ -7,11 +7,13 @@ import SignUp from './SignUp';
 import Main from './Main';
 import OfferRide from './ORS'; // import the OfferRide screen
 import RequestRide from './RRS'; // import to RequestRide screen
+import RequestResults from './RequestResults';
 import WWP from './WWP'
 import CoinMeasurement from './CoinMeasurement';
 import AlertPage from './Alert'
 import google_map from './google_map'
 import User_Rating from './UserRating'
+import QRCode from './QRCode';
 
 
 
