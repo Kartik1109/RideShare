@@ -14,13 +14,10 @@ import AlertPage from './Alert'
 //import google_map from './google_map'
 import User_Rating from './UserRating'
 import QRCode from './QRCode';
-
-
 import geoLocation from './geoLocation'
 import settings from './settings'
 import DeletionReasonPage from './DeletionReasonPage';
 import EditPage from './EditAccountPage'
-import QRCode from './QRCode'
 
 
 const Stack = createStackNavigator();
@@ -85,11 +82,6 @@ function App() {
         <Stack.Screen name="OfferRide" component={OfferRide} />
         <Stack.Screen name="RequestRide" component={RequestRide} />
         <Stack.Screen name="RequestResults" component={RequestResults} />
-        <Stack.Screen name="WWP" component={WWP} />
-        <Stack.Screen name="CoinMeasurement" component={CoinMeasurement} />
-        <Stack.Screen name="AlertPage" component={AlertPage} />
-        <Stack.Screen name="google_map" component={google_map} />
-        <Stack.Screen name="User_Rating" component={User_Rating} />
         <Stack.Screen name="WWP" component={WWP} />
         <Stack.Screen name="CoinMeasurement" component={CoinMeasurement} />
         <Stack.Screen name="AlertPage" component={AlertPage} />

@@ -1,4 +1,4 @@
-export default findOne = (collection, filter) => {
+export default findMany = (collection, filter) => {
     const headers = {
         'Content-Type': 'application/json',
         'Access-Control-Request-Headers': '*',

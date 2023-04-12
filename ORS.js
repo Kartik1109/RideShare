@@ -18,6 +18,7 @@ const OfferRide = ({ navigation }) => {
 
     data = {
       "offerer": userID,
+      "offererName": userName,
       "source": source,
       "destination": destination,
       "taxiID": taxiID,
