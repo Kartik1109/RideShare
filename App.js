@@ -11,11 +11,16 @@ import RequestResults from './RequestResults';
 import WWP from './WWP'
 import CoinMeasurement from './CoinMeasurement';
 import AlertPage from './Alert'
-import google_map from './google_map'
+//import google_map from './google_map'
 import User_Rating from './UserRating'
 import QRCode from './QRCode';
 
 
+import geoLocation from './geoLocation'
+import settings from './settings'
+import DeletionReasonPage from './DeletionReasonPage';
+import EditPage from './EditAccountPage'
+import QRCode from './QRCode'
 
 
 const Stack = createStackNavigator();
@@ -44,6 +49,12 @@ function HomeScreen({ navigation }) {
           onPress={() => navigation.navigate('Main')}
         >
           <Text style={styles.buttonText}>Skip to Main Screen</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, { height: 40 }]}
+          onPress={() => navigation.navigate('geoLocation')}
+        >
+          <Text style={styles.buttonText}>Skip to </Text>
         </TouchableOpacity>
 
       </View>
@@ -79,6 +90,15 @@ function App() {
         <Stack.Screen name="AlertPage" component={AlertPage} />
         <Stack.Screen name="google_map" component={google_map} />
         <Stack.Screen name="User_Rating" component={User_Rating} />
+        <Stack.Screen name="WWP" component={WWP} />
+        <Stack.Screen name="CoinMeasurement" component={CoinMeasurement} />
+        <Stack.Screen name="AlertPage" component={AlertPage} />
+        {/* <Stack.Screen name="google_map" component={google_map} /> */}
+        <Stack.Screen name="User_Rating" component={User_Rating} />
+        <Stack.Screen name="geoLocation" component={geoLocation} />
+        <Stack.Screen name="Settings" component={settings} />
+        <Stack.Screen name="DeletionReasonPage" component={DeletionReasonPage} />
+        <Stack.Screen name="EditPage" component={EditPage} />
         <Stack.Screen name="QRCode" component={QRCode} />
 
 
