@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { userID, userName } from './login';
+import { setMode } from './Alert'
 import insertOne from './insertOne';
 import axios from 'axios'
 
@@ -30,6 +31,7 @@ const OfferRide = ({ navigation }) => {
 
     axios(offer).then(function (response) {
       alert("offer has been made, check alert page for requests")
+      setMode("offer")
       navigation.navigate('Main')
     }
     ).catch(function (error) {

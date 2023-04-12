@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { setOffers } from './RequestResults';
+import { setMode } from './Alert'
 import axios from 'axios'
 
 const RequestRide = ({ navigation }) => {
@@ -21,6 +22,7 @@ const RequestRide = ({ navigation }) => {
       console.log(response.data.documents)
       setSource(source)
       setOffers(response.data.documents)
+      setMode("request")
       navigation.navigate('RequestResults')
     }
     ).catch(function (error) {

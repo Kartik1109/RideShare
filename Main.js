@@ -1,8 +1,63 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { userName } from './login';
+import { userName, userID } from './login';
+import { setRequests, setStatus, mode } from './Alert';
+import axios from 'axios';
+import findMany from './findMany';
+
+
 
 const Main = ({ navigation }) => {
+  const prepareOffererAlert = () => {
+    collection = 'Requests'
+
+    filter = {
+      "offererID": userID
+    }
+
+    query = findMany(collection, filter)
+
+    axios(query).then(function (response) {
+      console.log(response.data)
+      setRequests(response.data.documents)
+      navigation.navigate('AlertPage')
+    }
+    ).catch(function (error) {
+      console.log(error)
+    })
+  }
+
+  const prepareRequesterAlert = () => {
+    collection = 'Requests'
+
+    filter = {
+      "requesterID": userID
+    }
+
+    query = findOne(collection, filter)
+
+    axios(query).then(function (response) {
+      console.log(response.data)
+      if (response.data.documents != null) {
+        setStatus(true)
+      }
+      navigation.navigate('AlertPage')
+    }
+    ).catch(function (error) {
+      console.log(error)
+    })
+  }
+
+  const handleAlertNav = () => {
+    if (mode == "offer") {
+      prepareOffererAlert()
+    } else if (mode == "request") {
+      prepareRequesterAlert()
+    } else {
+      navigation.navigate('AlertPage')
+    }
+  }
+
   return (
 
 
@@ -39,7 +94,7 @@ const Main = ({ navigation }) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.button, { backgroundColor: '#007bff' }]}
-        onPress={() => navigation.navigate('AlertPage')}
+        onPress={handleAlertNav}
 
       >
         <Text style={styles.buttonText}>AlertPage</Text>

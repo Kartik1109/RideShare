@@ -4,23 +4,37 @@ import findMany from './findMany';
 import axios from 'axios'
 import { userID, userName } from './login'
 
+
+
 export var offers = null;
 export const setOffers = (o) => { offers = o }
 export var source = '';
 export const setSource = (s) => { source = s }
 
+
+
 const RequestResults = ({ navigation }) => {
+
+
 
     const handleRequest = (item) => {
         collection = 'Requests'
 
+
+
         data = {
-            "offerer": item.offerer,
+            "offererID": item.offerer,
             "requesterName": userName,
+            "requesterID": userID,
             "requesterSource": source,
+            "status": false
         }
 
+
+
         request = insertOne(collection, data)
+
+
 
         axios(request).then(function (response) {
             alert("request has been made, check alert page for status")
@@ -31,117 +45,81 @@ const RequestResults = ({ navigation }) => {
         })
     }
 
+
+
     console.log(offers)
+
+
 
     return (
         <FlatList
             data={offers}
-            renderItem={({ item }) => <TouchableOpacity onPress={() => handleRequest(item)}>
-                <Text>{item.offererName}</Text>
-                <Text>{item.source}</Text>
-                <Text>{item.capacity}</Text>
-                <Text>{item.genderPreference}</Text>
-            </TouchableOpacity>}
+            renderItem={({ item }) => (
+                <TouchableOpacity onPress={() => handleRequest(item)} style={styles.card}>
+                    <Text style={styles.title}>{item.offererName}</Text>
+                    <View style={styles.details}>
+                        <View style={styles.detail}>
+                            <Text style={styles.label}>Source:</Text>
+                            <Text style={styles.value}>{item.source}</Text>
+                        </View>
+                        <View style={styles.detail}>
+                            <Text style={styles.label}>Capacity:</Text>
+                            <Text style={styles.value}>{item.capacity}</Text>
+                        </View>
+                        <View style={styles.detail}>
+                            <Text style={styles.label}>Gender Preference:</Text>
+                            <Text style={styles.value}>{item.genderPreference}</Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>
+            )}
+            keyExtractor={(item) => item.id}
         />
     );
 };
 
+
+
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#f5f5f5',
+    card: {
+        backgroundColor: '#fff',
+        marginHorizontal: 20,
+        marginVertical: 10,
+        borderRadius: 5,
         padding: 20,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
     },
     title: {
-        fontSize: 32,
+        fontSize: 24,
         fontWeight: 'bold',
-        marginBottom: 20,
         color: '#333',
         textTransform: 'uppercase',
+        marginBottom: 10,
     },
-    inputContainer: {
-        marginBottom: 20,
-        width: '100%',
+    details: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+    },
+    detail: {
+        width: '48%',
+        marginBottom: 10,
     },
     label: {
-        fontSize: 18,
-        marginBottom: 5,
+        fontSize: 16,
         color: '#333',
         fontWeight: 'bold',
     },
-    input: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
-        padding: 10,
-        width: '100%',
-        backgroundColor: '#fff',
+    value: {
         fontSize: 16,
         color: '#333',
-    },
-    radioContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    radioButton: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
-        padding: 10,
-        width: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    radioButtonSelected: {
-        backgroundColor: '#333',
-        borderColor: '#333',
-    },
-    radioButtonText: {
-        fontSize: 16,
-        color: '#333',
-    },
-    radioButtonTextSelected: {
-        color: '#fff',
-    },
-    genderContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-    genderButton: {
-        backgroundColor: '#fff',
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
-        padding: 10,
-        width: '30%',
-        alignItems: 'center',
-    },
-    genderButtonText: {
-        color: '#333',
-        fontWeight: 'bold',
-        fontSize: 16,
-    },
-    selectedGenderButton: {
-        backgroundColor: '#333',
-        borderColor: '#333',
-    },
-    selectedGenderButtonText: {
-        color: '#fff',
-    },
-    button: {
-        padding: 10,
-        borderRadius: 5,
-        marginTop: 30,
-        width: '60%', // add this style
-        alignItems: 'center', // add this style to center the text horizontally
-    },
-    buttonText: {
-        color: '#fff',
-        fontSize: 18,
     },
 });
+
+
 
 export default RequestResults;
