@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Animated, TouchableOpacity, ImageBackground, Image} from 'react-native';
+import { View, Text, StyleSheet, Animated, TouchableOpacity, ImageBackground, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from './login';
@@ -7,13 +7,18 @@ import SignUp from './SignUp';
 import Main from './Main';
 import OfferRide from './ORS'; // import the OfferRide screen
 import RequestRide from './RRS'; // import to RequestRide screen
-import WWP from './WWP';
+import WWP from './WWP'
 import CoinMeasurement from './CoinMeasurement';
-import AlertPage from './Alert';
-import UserRating from './UserRating';
-import TFE from './TFE';
+import AlertPage from './Alert'
+import google_map from './google_map'
+import User_Rating from './UserRating'
 
 
+import geoLocation from './geoLocation'
+import settings from './settings'
+import DeletionReasonPage from './DeletionReasonPage';
+import EditPage from './EditAccountPage'
+import QRCode from './QRCode'
 
 
 const Stack = createStackNavigator();
@@ -43,7 +48,6 @@ function HomeScreen({ navigation }) {
           >
             <Text style={styles.buttonText}>Skip to Main Screen</Text>
           </TouchableOpacity>
-          
           
         </View>
       
@@ -75,9 +79,8 @@ function App() {
         <Stack.Screen name="WWP" component={WWP} /> 
         <Stack.Screen name="CoinMeasurement" component={CoinMeasurement} /> 
         <Stack.Screen name="AlertPage" component={AlertPage} /> 
-        <Stack.Screen name="TFE" component={TFE}/>
-        
-        <Stack.Screen name="UserRating" component={UserRating}/>
+        <Stack.Screen name="google_map" component={google_map} />
+        <Stack.Screen name="User_Rating" component={User_Rating}/>
         
 
 

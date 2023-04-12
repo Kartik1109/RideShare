@@ -38,7 +38,15 @@
     "react-native-reanimated": "~2.14.4",
     "react-native-safe-area-context": "^4.5.0",
     "react-native-screens": "^3.20.0",
+<<<<<<< HEAD
     "rn-nodeify": "^10.3.0"
+=======
+    "rn-nodeify": "^10.3.0",
+    "expo-barcode-scanner": "~12.3.2",
+    "undefined": "./google_map",
+    "react-native-webview": "11.26.0",
+    "expo-location": "~15.1.1"
+>>>>>>> 331faefa62adaffa23395382919ff38bc1808b2e
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
