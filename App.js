@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Animated, TouchableOpacity, ImageBackground, Image } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, Animated, TouchableOpacity, ImageBackground, Image} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from './login';
@@ -10,44 +10,42 @@ import RequestRide from './RRS'; // import to RequestRide screen
 import WWP from './WWP'
 import CoinMeasurement from './CoinMeasurement';
 import AlertPage from './Alert'
-import EditPage from './EditAccountPage';
-import DeletionReasonPage from './DeletionReasonPage';
-import Settings from './settings';
-import QRCode from './QRCode';
+import google_map from './google_map'
+import User_Rating from './UserRating'
 
-export var userID = '';
-export const setUserID = (uID) => { userID = uID }
+
+
 
 const Stack = createStackNavigator();
 
 function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-
-      <View style={styles.innerContainer}>
-        <Image source={require('./assets/logo_taxi.png')} style={styles.logo} />
-        <Text style={styles.title}>Welcome to RideLink!</Text>
-        <TouchableOpacity
-          style={[styles.button, { height: 40 }]}
-          onPress={() => navigation.navigate('Login')}
-        >
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, { height: 40 }]}
-          onPress={() => navigation.navigate('SignUp')}
-        >
-          <Text style={styles.buttonText}>Sign Up</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, { height: 40 }]}
-          onPress={() => navigation.navigate('Main')}
-        >
-          <Text style={styles.buttonText}>Skip to Main Screen</Text>
-        </TouchableOpacity>
-
-      </View>
-
+      
+        <View style={styles.innerContainer}>
+          <Image source={require('./assets/logo_taxi.png')} style={styles.logo} />
+          <Text style={styles.title}>Welcome to RideLink!</Text>
+          <TouchableOpacity
+            style={[styles.button, {height: 40}]}
+            onPress={() => navigation.navigate('Login')}
+          >
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button, {height: 40}]}
+            onPress={() => navigation.navigate('SignUp')}
+          >
+            <Text style={styles.buttonText}>Sign Up</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button, {height: 40}]}
+            onPress={() => navigation.navigate('Main')}
+          >
+            <Text style={styles.buttonText}>Skip to Main Screen</Text>
+          </TouchableOpacity>
+          
+        </View>
+      
     </View>
   );
 }
@@ -72,14 +70,13 @@ function App() {
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Main" component={Main} />
         <Stack.Screen name="OfferRide" component={OfferRide} />
-        <Stack.Screen name="RequestRide" component={RequestRide} />
-        <Stack.Screen name="WWP" component={WWP} />
-        <Stack.Screen name="CoinMeasurement" component={CoinMeasurement} />
-        <Stack.Screen name="AlertPage" component={AlertPage} />
-        <Stack.Screen name="EditPage" component={EditPage} />
-        <Stack.Screen name="DeletionReasonPage" component={DeletionReasonPage} />
-        <Stack.Screen name="Settings" component={Settings} />
-        <Stack.Screen name="QRCode" component={QRCode} />
+        <Stack.Screen name="RequestRide" component={RequestRide} /> 
+        <Stack.Screen name="WWP" component={WWP} /> 
+        <Stack.Screen name="CoinMeasurement" component={CoinMeasurement} /> 
+        <Stack.Screen name="AlertPage" component={AlertPage} /> 
+        <Stack.Screen name="google_map" component={google_map} />
+        <Stack.Screen name="User_Rating" component={User_Rating}/>
+        
 
 
       </Stack.Navigator>
