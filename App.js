@@ -11,10 +11,8 @@ import RequestResults from './RequestResults';
 import WWP from './WWP'
 import CoinMeasurement from './CoinMeasurement';
 import AlertPage from './Alert'
-import google_map from './google_map'
-import User_Rating from './UserRating'
-
-
+import UserRating from './UserRating'
+import QRCode from './QRCode';
 import geoLocation from './geoLocation'
 import settings from './settings'
 import DeletionReasonPage from './DeletionReasonPage';
@@ -75,13 +73,20 @@ function App() {
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Main" component={Main} />
         <Stack.Screen name="OfferRide" component={OfferRide} />
-        <Stack.Screen name="RequestRide" component={RequestRide} /> 
-        <Stack.Screen name="WWP" component={WWP} /> 
-        <Stack.Screen name="CoinMeasurement" component={CoinMeasurement} /> 
-        <Stack.Screen name="AlertPage" component={AlertPage} /> 
-        <Stack.Screen name="google_map" component={google_map} />
-        <Stack.Screen name="User_Rating" component={User_Rating}/>
-        
+        <Stack.Screen name="RequestRide" component={RequestRide} />
+        <Stack.Screen name="RequestResults" component={RequestResults} />
+        <Stack.Screen name="WWP" component={WWP} />
+        <Stack.Screen name="CoinMeasurement" component={CoinMeasurement} />
+        <Stack.Screen name="AlertPage" component={AlertPage} />
+        <Stack.Screen name="UserRating" component={UserRating} />
+        <Stack.Screen name="geoLocation" component={geoLocation} />
+        <Stack.Screen name="Settings" component={settings} />
+        <Stack.Screen name="DeletionReasonPage" component={DeletionReasonPage} />
+        <Stack.Screen name="EditPage" component={EditPage} />
+        <Stack.Screen name="QRCode" component={QRCode} />
+
+
+
 
 
       </Stack.Navigator>
@@ -134,3 +139,4 @@ const styles = StyleSheet.create({
 
 
 export default App;
+

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { userID, userName } from './login';
 import insertOne from './insertOne';
 import axios from 'axios'
+import QRCode from './QRCode'
+import { useRoute } from '@react-navigation/native';
 
 
 const OfferRide = ({ navigation }) => {
@@ -11,6 +13,17 @@ const OfferRide = ({ navigation }) => {
   const [taxiID, settaxiID] = useState('');
   const [numPeople, setNumPeople] = useState(1);
   const [gender, setGender] = useState('');
+  const [qrCodeData, setQrCodeData] = useState(null);
+  const route = useRoute();
+
+
+  useEffect(() => {
+    if (route.params && route.params.qrCodeData) {
+      setQrCodeData(route.params.qrCodeData);
+    }
+  }, [route.params]);
+
+
 
 
   const handleOfferRide = () => {
@@ -21,12 +34,13 @@ const OfferRide = ({ navigation }) => {
       "offererName": userName,
       "source": source,
       "destination": destination,
-      "taxiID": taxiID,
+      "taxiID": taxiID || qrCodeData,
       "capacity": numPeople,
       "genderPreference": gender
     }
 
     offer = insertOne(collection, data)
+    console.log(data)
 
     axios(offer).then(function (response) {
       alert("offer has been made, check alert page for requests")
@@ -46,6 +60,8 @@ const OfferRide = ({ navigation }) => {
   const handleGenderSelection = (value) => {
     setGender(value);
   };
+
+
   <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDh_1eEIhijEjqSPkGMRAuvP7Tylj9ztQM&libraries=places&callback=initMap">
   </script>
@@ -62,6 +78,8 @@ const OfferRide = ({ navigation }) => {
           placeholder="Enter source location"
         />
       </View>
+
+
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Destination Location:</Text>
         <TextInput
@@ -79,6 +97,8 @@ const OfferRide = ({ navigation }) => {
           onChangeText={settaxiID}
           placeholder="Enter taxID, or scan QR-code"
         />
+      </View>
+      <View>
       </View>
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Number of people:</Text>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
+
 export default function App({ navigation }) {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
@@ -17,8 +18,15 @@ export default function App({ navigation }) {
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
         setQRCodeData(data);
-        navigation.navigate('OfferRide', { qrCodeData })
 
+        // Extract taxiID from scanned QR code data
+        console.log(data)
+        //const qrCodeJson = JSON.parse(data);
+        //const taxiID = qrCodeJson.taxiID;
+        const qrCodeData = data;
+
+        // Navigate to OfferRide screen with taxiID as parameter
+        navigation.navigate('OfferRide', { qrCodeData });
     };
 
     if (hasPermission === null) {
@@ -50,6 +58,7 @@ export default function App({ navigation }) {
         </View>
     );
 }
+
 
 const styles = StyleSheet.create({
     container: {
