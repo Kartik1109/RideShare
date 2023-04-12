@@ -53,7 +53,7 @@ const Main = ({ navigation }) => {
             style={styles.coinButton}
             onPress={() => navigation.navigate('CoinMeasurement')}
           />
-          <Text style={styles.coinText}>100 coins</Text>
+          <Text style={styles.coinText}>0 coins</Text>
 
 
 
