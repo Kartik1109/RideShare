@@ -37,13 +37,14 @@
 // }
 
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Alert } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 
-export default function App() {
+export default function App({ navigation }) {
     const [location, setLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
+    const [alertTriggered, setAlertTriggered] = useState(false); // added state to avoid showing alert multiple times
 
     useEffect(() => {
         (async () => {
@@ -54,6 +55,7 @@ export default function App() {
             }
 
             let location = await Location.getCurrentPositionAsync({});
+            console.log(location.coords.latitude)
             setLocation(location);
         })();
     }, []);
@@ -71,21 +73,33 @@ export default function App() {
             </View>
         );
     } else {
-        return (
-            <MapView
-                style={styles.map}
-                initialRegion={{
-                    latitude: location.coords.latitude,
-                    longitude: location.coords.longitude,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
-                }}
-            >
-                <Marker coordinate={{ latitude: location.coords.latitude, longitude: location.coords.longitude }} />
-            </MapView>
-        );
+        // check if current location matches target location, and if alert has not already been triggered
+        if (
+            location.coords.latitude <= 43.26 &&
+            location.coords.latitude >= 43.25 &&
+            location.coords.longitude >= -80.0 &&
+            location.coords.longitude <= -79.0 &&
+            !alertTriggered
+        ) {
+            navigation.navigate('UserRating')
+        }
     }
+
+    return (
+        <MapView
+            style={styles.map}
+            initialRegion={{
+                latitude: location.coords.latitude,
+                longitude: location.coords.longitude,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+            }}
+        >
+            <Marker coordinate={{ latitude: location.coords.latitude, longitude: location.coords.longitude }} />
+        </MapView>
+    );
 }
+
 
 const styles = StyleSheet.create({
     container: {
@@ -97,5 +111,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 });
+
+
 
 
