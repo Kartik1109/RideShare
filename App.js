@@ -88,6 +88,7 @@ function App() {
 
 
 
+
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -138,3 +139,4 @@ const styles = StyleSheet.create({
 
 
 export default App;
+

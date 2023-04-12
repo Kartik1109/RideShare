@@ -99,13 +99,13 @@ const Main = ({ navigation }) => {
       >
         <Text style={styles.buttonText}>AlertPage</Text>
       </TouchableOpacity>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={[styles.button, { backgroundColor: '#007bff' }]}
         onPress={() => navigation.navigate('UserRating')}
 
       >
         <Text style={styles.buttonText}>User_Rating</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       <TouchableOpacity
         style={[styles.button, { backgroundColor: '#007bff' }]}
