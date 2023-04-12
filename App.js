@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, Animated, TouchableOpacity, ImageBackground, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -7,14 +7,14 @@ import SignUp from './SignUp';
 import Main from './Main';
 import OfferRide from './ORS'; // import the OfferRide screen
 import RequestRide from './RRS'; // import to RequestRide screen
-import RequestResults from './RequestResults';
 import WWP from './WWP'
 import CoinMeasurement from './CoinMeasurement';
 import AlertPage from './Alert'
-import EditPage from './EditAccountPage';
-import DeletionReasonPage from './DeletionReasonPage';
-import Settings from './settings';
-import QRCode from './QRCode';
+import google_map from './google_map'
+import User_Rating from './UserRating'
+
+
+
 
 const Stack = createStackNavigator();
 
@@ -75,10 +75,10 @@ function App() {
         <Stack.Screen name="WWP" component={WWP} />
         <Stack.Screen name="CoinMeasurement" component={CoinMeasurement} />
         <Stack.Screen name="AlertPage" component={AlertPage} />
-        <Stack.Screen name="EditPage" component={EditPage} />
-        <Stack.Screen name="DeletionReasonPage" component={DeletionReasonPage} />
-        <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="google_map" component={google_map} />
+        <Stack.Screen name="User_Rating" component={User_Rating} />
         <Stack.Screen name="QRCode" component={QRCode} />
+
 
 
       </Stack.Navigator>
