@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import { setDestination } from './RequestResults';
+import { setOffers } from './RequestResults';
+import axios from 'axios'
 
-const OfferRide = () => {
+const RequestRide = ({ navigation }) => {
   const [source, setSource] = useState('');
   const [destination, setDestination] = useState('');
   const [numPeople, setNumPeople] = useState(1);
@@ -14,10 +15,12 @@ const OfferRide = () => {
       "destination": destination
     }
 
-    request = find(collection, data)
+    request = findMany(collection, filter)
 
     axios(request).then(function (response) {
-      response.data.document
+      console.log(response.data.documents)
+      setOffers(response.data.documents)
+      navigation.navigate('RequestResults')
     }
     ).catch(function (error) {
       console.log(error)
@@ -212,4 +215,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OfferRide;
+export default RequestRide;

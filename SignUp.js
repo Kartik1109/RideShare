@@ -27,7 +27,8 @@ const SignUp = ({ navigation }) => {
     new_user = {
       "email": email,
       "name": name,
-      "password": password
+      "password": password,
+      "rating": 5,
     }
 
     duplicates = findOne(collection, duplicates_filter)
