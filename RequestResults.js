@@ -2,20 +2,41 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import findMany from './findMany';
 import axios from 'axios'
+import { userID, userName } from './login'
 
 export var offers = null;
 export const setOffers = (o) => { offers = o }
+export var source = '';
+export const setSource = (s) => { source = s }
 
-const RequestResults = () => {
+const RequestResults = ({ navigation }) => {
 
-    const handleRequest = () => { }
+    const handleRequest = (item) => {
+        collection = 'Requests'
+
+        data = {
+            "offerer": item.offerer,
+            "requesterName": userName,
+            "requesterSource": source,
+        }
+
+        request = insertOne(collection, data)
+
+        axios(request).then(function (response) {
+            alert("request has been made, check alert page for status")
+            navigation.navigate('Main')
+        }
+        ).catch(function (error) {
+            console.log(error)
+        })
+    }
 
     console.log(offers)
 
     return (
         <FlatList
             data={offers}
-            renderItem={({ item }) => <TouchableOpacity onPress={handleRequest}>
+            renderItem={({ item }) => <TouchableOpacity onPress={() => handleRequest(item)}>
                 <Text>{item.offererName}</Text>
                 <Text>{item.source}</Text>
                 <Text>{item.capacity}</Text>

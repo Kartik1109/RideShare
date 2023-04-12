@@ -19,6 +19,7 @@ const RequestRide = ({ navigation }) => {
 
     axios(request).then(function (response) {
       console.log(response.data.documents)
+      setSource(source)
       setOffers(response.data.documents)
       navigation.navigate('RequestResults')
     }
