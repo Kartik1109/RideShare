@@ -1,0 +1,538 @@
+Deliverable #1 : Software Requirement Specification (SRS)
+SE 3A04: Software Design II – Large System Design
+Tutorial Number: T01
+Group Number: G4
+Group Members: Mark Kogan, Abdul Zulfiqar, Kartik Chaudhari, Saina Seddighpour
+1 Introduction
+1.1 Purpose
+The purpose of this Specification is to maintain a reference towards the project goals, constraints,
+and requirements. This ensures that all ambiguity within the project is eliminated, and that all
+crucial requirements of the project are clearly documented. The specification will be consistently
+referenced throughout the project, and forms the basis on which the final product will be built. The
+intended audience of the SRS is for the developers of the product to reference, as well as the client
+to approve.
+1.2 Scope
+The name of this product will be “Ridelink”. The software will provide a service to customers
+of the taxi company, allowing them to conveniently set up and join carpools. Users will be able
+to offer to carpool from their taxi, or join a carpool heading to the same destination. This allows
+users to save money on taxi fares and the taxi company to save time and fuel, and attract more
+customers. This app also offers users the opportunity to participate in a fun ”Wordle Wednesday”
+challenge, where they will be rewarded with a discounted fare for entering the word of the day each
+Wednesday.
+1
+1.3 Definitions, Acronyms, and Abbreviations
+SRS - System Requirements Specifications
+BE - Business Event
+VP - View Point
+Sm - System Response
+Em - Environment Reaction
+app - application
+1.4 References
+[1] City of Toronto, “Taxis and limousines,” City of Toronto, 20-Dec-2022. [Online]. Available:
+https://www.toronto.ca/city-government/public-notices-bylaws/bylaw-enforcement/taxis-and-limousines/.
+[Accessed: 20-Feb-2023]
+[2] Poparide special offer. HI Canada. (n.d.). Retrieved March 4, 2023, from
+https://hihostels.ca/en/promo/poparide: :text=Poparide
+[3] N. Babich , “22 basic UX laws that every designer should know,” Shopify, 20-Aug-2019.
+[Online]. Available: https://www.shopify.com/ca/partners/blog/ux-laws: :text=Based
+[4]“By-law no. 575-2016 - toronto.” [Online]. Available: https://www.toronto.ca/legdocs/bylaws/2016/law0575.pdf.[Accessed: 05-Mar-2023].
+1.5 Overview
+This SRS contains the expected use and requirements that shape this project. These requirements
+are represented in the following sections which will describe the Product Perspective, Functional and
+Nonfunctional Requirements, User Characteristics, and important assumptions/constraints. The
+next sections will be displayed in the following order. Overall Description, which describes the
+overall function, assumptions, and constraints of the project, as well as the expected client base. Use
+Case Diagram which gives a visual representation of how the most important application functions
+will be handled. Functional requirements which are written to express the required performance
+of the product in a non-technical way, and NonFunctional requirements which outline the system’s
+capabilities and crucial features regarding appearance, usability, security, and ethics.
+2 Overall Product Description
+2.1 Product Perspective
+This product provides a carpooling service, similar to other products on the market, such as
+P oparide2 which allows drivers to find carpoolers to cover gas costs. However, our service differs in
+that it is specifically designed for taxi companies to use. Thus, it contains other important features,
+such as passenger rating, and a dispatcher to store information of all registered taxis in our client
+company. This product is not totally independent. It relies on the google maps API to determine
+routes and it exists as part of a service provided by the client taxi service.
+2
+2.2 Product Functions
+• Match Facilitation: The purpose of this application is to facilitate matches amongst people
+who are using the taxi service, and are heading to similar destinations. The goal of this
+application is for the users to share the taxis, allowing them to save money by splitting the fare.
+This will be accomplished through a main ”Dispatcher” that creates matches in accordance to
+provided information.
+• Application Modes: The application offers a “Request Taxi Carpool” mode and an “Offer
+Taxi Carpool” mode.
+– The ”Request Taxi Carpool” mode shall provide the customer with the ability to specify
+their destination and other search criteria and send the input to the dispatcher to find
+matches. Upon the customer making a selection, the system shall notify the ”Dispatcher”
+to forward the request to the offering rider.
+– The ”Offer Taxi Carpool” mode shall provide customers with the feature to scan a code
+representing the taxi ID, which would be placed inside the taxi. After scanning the code,
+the customer must enter details about their offer, such as destination, taxi ID, and the
+maximum number of customers to share the ride with. The offer will be sent to the
+”Dispatcher” for processing. The customer must wait for requests after making the offer.
+• Creative Feature: The application provides discount to Wordle Wednesday winners.
+2.3 User Characteristics
+This application provides a simple matching service, to allow taxi users to save money by splitting
+taxi fares. It is targeted for the regular client base of the taxi company, including students, adults,
+3
+and seniors. The app is also designed in accordance of
+Educational Level: To use the app as such there is no specific level of education required. A
+basic understanding of smartphones and other technologies, however, might be useful.
+Experience: The users of the app don’t necessarily need to have prior experience of traveling in
+a taxi - they can be traveling for the first time or be a frequent user.
+Technical expertise: Experience using a smartphone/smartphone application
+2.4 Constraints
+The cost to create the application shall be within the developing team’s budget. In the case of
+our team, the application must be achievable with no initial investments.
+The timeframe for the development of the application is until the week of April 10.
+The fares must be calculated such that the taxi company profits while the taxi riders save from
+carpooling.
+The fares must follow the method of taxi-fare calculation in accordance to the bylaws of the city
+it operates in. Additionally, the fares must include appropriate taxes (13% in Toronto).
+2.5 Assumptions and Dependencies
+The following system properties are assumed, and changes to these assumptions will accordingly
+change the system requirements:
+The system will be built as a native application for the android operating system, specifically
+targeting typical modern smartphones (i.e. pocket-sized mobile devices with single screens, camera,
+and GPS capabilities). The system also depends on the continued support and open access of the
+map-providing service used (i.e. Google maps API) as this would be required for allow customers
+to track the taxi route and present potential routes when requesting or offering taxi carpools.
+2.6 Apportioning of Requirements
+N/A
+4
+3 Use Case Diagram
+This is an example of the standard procedure of requesting to join a carpool. It requires the
+requester to choose their option, as well as the offer maker to accept. The app must handle this
+by authenticating the users and maintaining a line of communication between each user, as well as
+updating the databases for changes to carpool availability.
+4 Highlights of Functional Requirements
+Business Events:
+• User opens the app to create an account
+• User uses the app to edit their account
+• User uses the app to remove their account
+• User uses the app to offer a taxi carpool
+• User uses the app to request a taxi carpool
+• User arrives at target destination
+5
+• User enters submission for ”Wordle Wednesday”
+BE1: User opens the application to register for an account.
+Pre-condition: the user has the application installed on an Android smartphone.
+VP1.1 - Rider
+Main Success Scenario:
+E1: User opens the account and selects sign-up for an account.
+S1: The system prompts the user to input their personal information.
+E2: The rider provides the required information and submits.
+S2: The system validates the format/validity of the inputted information.
+S3: The system creates an account, and saves the user’s information in its database.
+Secondary Scenario:
+S2.1: The format of the information provided is not valid or the requirements are not met.
+1. System identifies the information that was not validated and prompts the user to re-enter.
+2. User re-enters the information and submits.
+VP1.2 - Legal team
+S2: The system presents the user with a consent form that outlines the terms and conditions for
+collection and use of user information.
+Global Scenario:
+Pre-condition: the user has the application installed on an Android smartphone.
+Main Success Scenario:
+E1: User opens the account and selects sign-up for an account.
+S1: The system prompts the user to input their personal information.
+E2: The rider provides the required information and submits.
+S2: The system validates the format/validity of the inputted information and presents the user with
+a privacy policy consent form.
+E3: The user accepts the terms and conditions.
+S3: The system creates an account, and saves the user’s information in its database.
+Secondary Scenario:
+S2.1: The format of the information provided is not valid or the requirements are not met.
+1. System identifies the information that was not validated and prompts the user to re-enter.
+2. User re-enters the information and submits.
+E3.1: The user doesn’t accept the terms and conditions.
+1. System fails to create an account and displays a message.
+6
+BE2: User uses the app to edit their account
+Pre-condition: The user has the application downloaded on their Android smartphone and possesses
+an account.
+VP2.1 - Rider
+Main Success Scenario:
+E1: User selects edit account.
+S1: The system presents the user with their profile information.
+E2: The taxi rider enters the edited information.
+S2: The system displays the changes on its interface.
+E3: The user submits the changes.
+S3: The system validates the format of the newly inputted information.
+S4: The system updates the rider’s information in its database and shows a success message.
+Secondary Scenario:
+S3.1: The format of the information provided is not valid or requirements are not met.
+VP2.2 - Legal Team
+S3: The system must check that the user’s age is above 18 years old.
+1. System identifies the information that was not validated and tells the user.
+2. User re-enters the information and submits.
+Global Scenario:
+Pre-condition: The user has the application downloaded on their Android smartphone and possesses
+an account.
+Main Success Scenario:
+E1: User selects edit account.
+S1: The system presents the user with their profile information.
+E2: The taxi rider enters the edited information.
+S2: The system displays the changes on its interface.
+E3: The user submits the changes.
+S3: The system validates the format of the newly inputted information. It also ensures that the
+user is of legal age and not a minor.
+S4: The system updates the rider’s information in its database and shows a success message.
+Secondary Scenario:
+S3.1: The format of the information provided is not valid or the age requirements are not met.
+1. System identifies the information that was not validated and tells the user.
+2. User re-enters the information and submits.
+7
+BE3: User uses the app to delete their account.
+Pre-condition: The user has the application downloaded on their Android smartphone and possesses
+an account.
+VP3.1 - Rider
+Main Success Scenario:
+E1: The rider uses the app to delete their account.
+S1: The application displays a confirmation message.
+E2: The user confirms their action.
+S2: The application removes the user’s information and account from its database.
+Secondary Scenario:
+E2.1: The user cancels their action.
+S2.1 The application aborts the action and redirects the user to the home directory
+VP3.2 - Marketing Team
+Pre-condition: None
+S3: The system asks the user to provide the reason behind their decision to delete their account.
+E3: The user selects the reason.
+S4: The marketing team uses the feedback to ensure less users leave the application for the provided
+reason.
+Global Scenario:
+Main Success Scenario:
+E1: The rider uses the app to delete their account.
+S1: The system displays a confirmation message.
+E2: The user confirms their action.
+S2: The system removes the user’s information and account from its database.
+S3: The system presents the user with a feedback form.
+E4: The user selects the reason.
+S4: The feedback is saved for the marketing team’s assessment.
+Secondary Scenario:
+E2.1: The user cancels their action.
+S2.1 The application aborts the action and redirects the user to the home directory.
+8
+BE4: User uses the app to request to join carpool. (**MODIFIED**)
+Pre-condition: The customer is registered on the application.
+VP4.1 - Rider
+Main Success Scenario:
+E1: User requests to join carpool.
+S1: System prompts the user to enter their destination location and search parameters.
+E2: User enters destination location and search parameters.
+S2: System presents the user with potential carpool offers.
+E3: User selects a carpool offer.
+S3: System sends request to the offering rider.
+VP4.2 - Accounting Team
+S2: The system must verify that the taxi company will not be losing money by offering the taxi
+sharing service prior to presenting the user with potential offers.
+Global Scenario:
+Pre-condition: The customer is registered on the application.
+Main Success Scenario:
+E1: User requests to join carpool.
+S1: System prompts the user to enter their destination location and search parameters.
+E2: User enters destination location and search parameters.
+S2: System checks to verify that the taxi company will not be losing money by offering the taxi
+sharing service prior to presenting the user with potential offers.
+S3: System presents the user with potential carpool offers.
+E3: User selects a carpool offer.
+S4: System sends request to the offering rider.
+9
+BE5: User uses the app to offer a taxi carpool.
+Pre-condition: The user is registered on the application and is in the taxi.
+VP5.1: Rider
+Main Success Scenario:
+E1: The offering rider scans QR code that has the taxi ID.
+S1: System prompts the offering rider to input relevant information.
+E2: The offering rider enters ride details.
+S2: System dispatcher processes offer and presents matches to requesting riders.
+E3: A requesting rider chooses the offer.
+S3: System presents the match to the offering rider, indicating potential changes to their trip.
+E4: Offering rider accepts the request.
+S4: System notifies the requesting rider and adds them to the carpool.
+Secondary Scenario:
+E3.1: No requesting rider chooses the offer.
+1. The offer expires and is no longer available to the dispatcher.
+E4.1: Offering rider rejects the request.
+1. The dispatcher continues looking a match until the offer expires.
+VP5.2: Accounting Team
+Main Success Scenario:
+S4: System must indicate that it is optimal to accept the request.
+Secondary Scenario:
+S4.1: System indicates that it is not optimal to accept the request.
+1. The offering rider rejects the request.
+2. The system continues looking for a match until the offer expires.
+Global Scenario:
+Pre-condition: The user is registered on the application and is in the taxi.
+Main Success Scenario:
+E1: The offering rider scans QR code of the taxi ID.
+S1: System prompts the offering rider to input relevant information.
+E2: The offering rider enters ride details.
+S2: System dispatcher processes offer and presents matches to requesting riders.
+E3: A requesting rider chooses the offer.
+S3: System presents the match to the offering rider, indicating potential changes to their trip.
+S4: System must indicate that it is optimal to accept the request.
+E4: Offering rider accepts the request.
+S5: System notifies the requesting rider and adds them to the carpool.
+Secondary Scenario:
+E3.1: No requesting rider chooses the offer.
+1. The offer expires and is no longer available to the dispatcher.
+S4.1: System indicates that it is not optimal to accept the request.
+1. The offering rider rejects the request.
+2. The system continues looking for a match until the offer expires.
+E4.1: Offering rider rejects the request.
+1. The dispatcher continues looking a match until the offer expires.
+10
+BE6: User arrives at target destination (**MODIFIED**)
+Pre-condition: The riders have gone through the match-making process and have been on the same
+taxi.
+Main Success Scenario:
+VP6.1 - Rider
+E1: Riders reach their destination.
+S1: System displays calculated fare for end of ride.
+S2: System presents the rider with a form to rate their ride sharers.
+E2: User enters rating.
+S3: System calculates new rating average for rider that was rated.
+S4: System updates the users’ profile with their new rating.
+S5: System deactivates carpool offer for future carpool requesters
+Secondary Scenario:
+E2.1: The user doesn’t provide a rating.
+1. The system keeps presenting them with the form and doesn’t allow them to use the app in any
+other way until the rating is provided.
+VP6.2 - Accounting Team
+S1.1: The system tracks the amount of money paid to the taxi company and the amount saved
+through ride sharing.
+VP6.3 - Marketing Team
+S5: if the rating of a rider drops below a threshold, the system warns them about account revocation.
+1. After 3 warnings, the account is revoked.
+Global Scenario:
+Pre-condition: The riders have gone through the match-making process and have been on the same
+taxi.
+Main Success Scenario:
+E1: Riders reach their destination.
+S1: System displays calculated fare for end of ride.
+S2: System tracks how much the taxi company was paid for the trip and how much the riders saved.
+S3: System presents the rider with a form to rate their ride sharers.
+E2: User enters rating.
+S3: System calculates new rating average for rider that was rated.
+S4: System updates the users’ profile with their new rating.
+Secondary Scenario:
+E2.1: The user doesn’t provide a rating.
+1. The system keeps presenting them with the form and doesn’t allow them to use the app in any
+other way until the rating is provided.
+S4.1: if the rating of a rider drops below a threshold, the system warns them about account revocation.
+1. After 3 warnings, the account is revoked.
+11
+B7: Users enter word of the day for Wordle Wednesday
+Pre-Condition: The system has determined it is a Wednesday and the user has chosen to participate.
+VP7.1 Rider
+Main Success Scenario:
+S1: System presents option to enter word of the day for discounts.
+E1: User enters correct word of the day submission.
+E2: User submits their word.
+S2: System displays congratulations, and explains that User will receive a discount on their next
+taxi trip using ”Ridelink”.
+S3: System will apply the discount on the fare calculation for the user’s next ride.
+Secondary Scenario:
+E1.1: User enters wrong word of the day submission
+1. User re-submits their word for a maximum of six tries.
+1.i. The user gets the correct word prior to their sixth try. 1.ii. The system applies the discount
+on the next fare calculation. 2. System displays that submission is incorrect for the sixth time and
+that the user did not win the discount.
+E1.2: User requests to learn more about wordle Wednesday
+S2.2.1: System displays message with link to wordle, explaining rules of Wordle Wednesday
+VP7.3: Marketing:
+S4: System offers a 50 percent discount to a random Winner of Wordle Wednesday.
+Global Scenario
+Main Success Scenario: S1: System presents option to enter word of the day for discounts.
+E1: User enters correct word of the day submission.
+E2: User submits their word.
+S2: System displays congratulations, and explains that User will receive a discount on their next
+taxi trip using ”Ridelink”.
+S3: System will apply the discount on the fare calculation for the user’s next ride.
+S4: System offers a 50 percent discount to a random Winner of Wordle Wednesday.
+S4.1: System congratulates the random winner.
+S4.2. System will divide fare calculation by two, for the next ride the winner pays for.
+Secondary Scenarios:
+E1.1: User enters wrong word of the day submission
+1. User re-submits their word for a maximum of six tries.
+1.i. The user gets the correct word prior to their sixth try.
+1.ii. The system applies the discount on the next fare calculation.
+2. System displays that submission is incorrect for the sixth time and that the user did not win the
+discount.
+E1.2 User requests to learn more about Wordle Wednesday
+1. System displays message with link to wordle, explaining rules of Wordle Wednesday
+12
+5 Non-Functional Requirements
+5.1 Look and Feel Requirements
+5.1.1 Appearance Requirements
+[LF-AR1.] N/A
+5.1.2 Style Requirements
+1. LF-SR1. The application should include the company’s specific logo as well as the logo of the
+taxi company it is operating with.
+Rationale: A logo is helpful for marketing and branding purposes.
+5.2 Usability and Humanity Requirements
+5.2.1 Ease of Use Requirements
+UH-EOU1. The first successful interaction between the user and application shall take at most
+30 seconds on first attempt for 85% of users of various age demographics (18-75+).
+Rationale: The users of the application can be anyone of legal age with different technological
+skill sets. The application should be simple enough that individuals who are not technologically skilled can learn and use the application. According to research, an average user can
+only maintain their attention on a task for a maximum of 10 seconds. Thus, if the first time
+a user gets a response from the application is more than 30 seconds after actively trying, that
+means that the application is too difficult to use.
+5.2.2 Personalization and Internationalization Requirements
+[UH-PI1.] N/A
+5.2.3 Learning Requirements
+UH-LR1. The app’s GUI should be simple enough to learn in 10 minutes or less by a member
+of the general public.
+Rational: Becoming competent in using a new application should be simple and is of great
+importance for an application that is to be used by any member of the general public.
+5.2.4 Understandability and Politeness Requirements
+[UH-UP1.] N/A
+5.2.5 Accessibility Requirements
+[UH-A1.] N/A
+13
+5.3 Performance Requirements
+5.3.1 Speed and Latency Requirements
+PR-SL1. Any interaction between a user and the application shall have a maximum response
+time of two seconds.
+Rationale: In order to make sure that the application functions smoothly and seamlessly, it is
+essential for its response time to be as fast as possible. This would also improve user experience
+which would translate to more users being willing to use the application.
+5.3.2 Safety-Critical Requirements
+PR-SC1. The name of the rider that is sharing a ride shall be visible to the rider offering the
+carpool.
+Rationale: This would ensure that the person getting in the car as the rider offering the ride
+is the actual person they agreed to sharing a ride with on the application.
+5.3.3 Precision or Accuracy Requirements
+PR-PA1. The fare calculations must be consistent and accurate to two decimal places.
+Rationale: the same method of calculation should be used to calculate the fares for all riders
+and the fare should be accurate to two decimal places so that it’s easily payable.
+PR-PA2. The target destination of riders sharing a ride must be within a 35m radius of each
+other.
+Rationale: The requirement for sharing a ride is that riders must be going to the same destination. If the application needs an exact geographical location, there would be no room for
+slight variations that are intuitively considered to be the same location.
+5.3.4 Reliability and Availability Requirements
+N/A (**Modified** –¿ taken out based on feedback)
+5.3.5 Robustness or Fault-Tolerance Requirements
+PR-RFT1. The application shall display a message to a requesting rider when an offering rider
+rejects their request or when an offer expires.
+Rationale: This requirement will ensure that users know what is happening to their offer/request and there would be no room for confusion for the users.
+5.3.6 Capacity Requirements
+PR-C1. The application must be able to handle having 5 simultaneous users during the day
+from 6:00am to 12am. For the period from 12am to 6am, the maximum loading can be 3.
+Rationale: In order for the application to work well and for riders to be able to find other
+riders to share rides with, it is expected that the application will have simultaneous users in
+different geographical locations. Therefore, it must be able to support all the users that would
+be simultaneously using the application. The numbers were specifically chosen such that the
+development team can easily test this requirement.
+14
+5.3.7 Scalability or Extensibility Requirements
+PR-SE1. The application must be extendable for use with other taxi companies. Therefore,
+there has to be minimal coupling between the application and the individual taxi company.
+The application must be a stand-alone entity, separated from the taxi company.
+Rationale: In order for the application to be useful, a high number of users must be using it.
+Therefore, it is important for the application to be extensible such that many different taxi
+companies in different regions can
+5.3.8 Longevity Requirements
+PR-L1. The application should be manually monitored on the first Monday of every month to
+ensure that fare calculations are up to date with the average costs of taxis.
+Rationale: The application’s fare calculations are subject to change based on the pricing of
+taxis in the city that the application operates in (Toronto). In order to ensure that users
+will use the application for a long time, the application must ensure that the prices remain
+affordable for taxi users while making sure that the taxi companies still make profit.
+5.4 Operational and Environmental Requirements
+5.4.1 Expected Physical Environment
+OE-EPE1. The application operates on Android smartphones and depends on QR codes that
+will be physically placed inside taxis.
+Rationale: The QR code needs to be placed inside a taxi such that the offering rider can scan
+it and make the ride available for carpooling. The QR code represents the taxi ID.
+5.4.2 Requirements for Interfacing with Adjacent Systems
+OE-IA1. The application must interface with Google Maps or other navigation systems.
+Rationale: To allow customers to track the taxi route and present potential routes when requesting or offering taxi carpools, there is a need for interfacing with a navigation system API.
+5.4.3 Productization Requirements
+[OE-P1.] N/A
+5.4.4 Release Requirements
+[OE-R1.] N/A
+5.5 Maintainability and Support Requirements
+5.5.1 Maintenance Requirements
+[MS-M1.] N/A
+15
+5.5.2 Supportability Requirements
+MS-S1. The system shall officially be supported for android versions 7.0 and higher.
+Rationale: This will allow the app to be used on older devices (any android devices released
+in 2016 or later, as well as many released earlier) while still having the necessary android API
+features to enable the core functionality of the app.
+5.5.3 Adaptability Requirements
+MS-A1. The application’s UI should scale correctly to fit devices with different aspect ratios.
+The height and width of the application should be within 0.3 inches of the borders of the phone
+that it is operating on.
+Rationale: The expected clients of this app will be interacting with the application through
+their smartphones. Thus, the app should work globally on various different models. This is
+testable by using the app on different screen sizes and aspect ratios to ensure that the UI scales
+correctly.
+5.6 Security Requirements
+5.6.1 Access Requirements
+SR-AC1. The app should only allow users with an account to use its services.
+Rationale: It is more secure to only allow those whose personal information are known to use
+the carpooling systems of the application.
+SR-AC2. The app must verify the age of users as they create their accounts to ensure that no
+minors (under the age of 18) can request or offer taxi rides.
+Rationale: The application would be protecting minors in this way and ensuring that only
+consenting account holders can use the application.
+5.6.2 Integrity Requirements
+SR-INT1. The application must encrypt all transmitted messages using a cryptosystem.
+Rationale: To ensure that the transmitted data is protected, encryption is necessary.
+5.6.3 Privacy Requirements
+SR-P1. Only the information of active users is kept in the database. The information of users
+who have deleted their account shall be removed from the database.
+Rationale: Keeping information of people who are no longer account holders is an unnecessary
+liability. The more information is kept, the more information there exists that needs to be
+protected.
+5.6.4 Audit Requirements
+[SR-AU1.] N/A
+16
+5.6.5 Immunity Requirements
+1.SR-IM N/A
+5.7 Cultural and Political Requirements
+5.7.1 Cultural Requirements
+CP-C1. The program must not use any icons or language that might be offensive to people in
+the region it operates in (Toronto) or in general.
+Rationale: This ensures that every user on the app feels respected.
+CP-C2. The program must use grammatically and logically correct sentences in English.
+Rationale: This requirement is essential to convey professionalism and ensure usability in the
+region that the application operates in (Toronto).
+5.7.2 Political Requirements
+[CP-P1.] N/A
+5.8 Legal Requirements
+5.8.1 Compliance Requirements
+LR-COMP1. The taxi cab fare must be calculated in accordance to the city’s regulated rate.
+Rationale: This is a bylaw that must be followed.
+LR-COMP2. The application needs to be in compliance with the Personal Information Protection and Electronic Documents Act (PIPEDA). This is ensured by obtaining implicit consent
+for collecting, sharing, using a user’s information, identifying purposes of data collection, limiting collection, use and external disclosure. This can be done by presenting the user with a
+consent form outlining the mentioned aspects upon account creation.
+Rationale: Any digital service that collects user information is legally required to have a privacy policy;thus, necessitating a privacy policy as the app will collect personal data (during
+account creation).
+5.8.2 Standards Requirements
+LR-STD1. A maximum of 4 riders can be matched to ride in a taxi according to the City of
+Toronto’s bylaws [4].
+Rationale: Ensures the safety of the riders and compliance with the city of Toronto’s bylaws.
+A Division of Labour
+Include a Division of Labour sheet which indicates the contributions of each team member. This
+sheet must be signed by all team members.
+17
+Name Contributions
+Saina Seddighpour
+Sections 1.3, 1.5, 2.2, BE3, BE4, BE5, NFR 5.2.1, NFR 5.2.4, NFR 5.2.5,
+NFR 5.3, NFR 5.4.1, NFR 5.4.2,
+NFR 5.6, NFR 5.8, global scenario, editing after feedback
+- all NFRs and BEs were reworked and redone.
+Mark Kogan Sections 1.1,1.2, 1.5, 2.1, block diagram, 2.2, 3 (use case diagram), BE5, BE6,
+BE7 NFR 5.1, 5.2.1, 5.5.1, global scenario 6-7, editing
+Kartik Chaudhari Sections: 2.1, 2.3, 2.4, Global Scenario, BE3, BE6, BE7, NFR 5.3,
+NFR 5.7.1, Editing
+Abdul Zulfiqar Sections: 1.2, 2.5 BE4, BE5, NFR 5.5.1 NFR 5.5.2, NFR 5.8.1
+18
